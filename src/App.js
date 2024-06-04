@@ -1,13 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Gallery from "./pages/test";
-import Button from "./pages/exemple";
+import Button from "./pages/playersearch";
 
 function App() {
   return <Router>
     <Routes>
-      <Route path="/galery" element={<Gallery />} />
-      <Route path="/button" element={<Button />} />
+      <Route path="/" element={<Button />} />
     </Routes>
   </Router>
 }
