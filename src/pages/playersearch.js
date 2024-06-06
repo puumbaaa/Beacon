@@ -1,7 +1,8 @@
-import { useState, createRef } from 'react';
+import {createRef, useState} from 'react';
 import "./test.css"
+import moment from "moment";
 
-export default function Gallery() {
+export default function UserSearching() {
 
     const regionEnd = {
         eu: "EUW",
@@ -12,10 +13,10 @@ export default function Gallery() {
         oc: "OCE",
     }
 
-    const key = "RGAPI-df78a024-995e-47c3-bc13-219bd38effce";
+    const key = "RGAPI-2f8a5bba-b35b-4e14-a14b-47a0cc848a2c";
 
     const [data, setData] = useState(null);
-    const [matchIds, setMatchIds] = useState(null);
+    const [matches, setMatches] = useState([]);
 
     const [search, setSearch] = useState(null)
     const [region, setRegion] = useState(null)
@@ -28,13 +29,16 @@ export default function Gallery() {
         setRegion(regionEnd[regionRef.current.value])
     }
 
-    function UpdateSearchData(url, userName, gameTag, apiKey) {
+    function addMatch(item) {
+        setMatches(prevItems => [...prevItems, item]);
+    }
+
+    function updateSearchData(url, userName, gameTag, apiKey) {
 
         if (userName == null || gameTag == null || apiKey == null) {
             return;
         }
 
-        console.log(url + "/" + userName + '/' + gameTag + '?api_key=' + apiKey)
         fetch(url + "/" + userName + '/' + gameTag + '?api_key=' + apiKey)
             .then(response => response.json())
             .then(result => {
@@ -51,33 +55,45 @@ export default function Gallery() {
 
     }
 
-    function GetSearchInfos(search, url, apikey) {
+    function getSearchData(search, url, apikey) {
 
         if (search.length > 1) {
-            UpdateSearchData(url, search[0], search[1], apikey)
+            updateSearchData(url, search[0], search[1], apikey)
         } else {
-            UpdateSearchData(url, search[0], region, apikey)
+            updateSearchData(url, search[0], region, apikey)
         }
 
         setSearch(null)
 
     }
 
-    function DisplayLastMatches(puuid, period, match_type, url, count, apikey) {
-        GetLastMatches(puuid, period, match_type, url, count, apikey)
-    }
-
-    function GetLastMatches(puuid, period, match_type, url, count, apikey) {
+    function getLastMatches(puuid, period, match_type, url, count, apikey) {
 
         let end_point = Math.floor(Date.now() / 1000)
         let start_point = end_point - 60 * 60 * 24 * period
 
-        let query = url + "/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&queue=" + match_type + "&start=0&count=" + count + "&api_key=" + apikey
+        let query = url + "/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&start=0&count=" + count + "&api_key=" + apikey
 
         fetch(query)
             .then(response => response.json())
             .then(result => {
-                setMatchIds(result)
+
+                for (let i = 0; i < result.length; i++) {
+
+                    let query = "https://europe.api.riotgames.com/lol/match/v5/matches/" + result[i] + "?api_key=" + apikey
+                    fetch(query)
+                        .then(response => response.json())
+                        .then(result => {
+                            console.log(result)
+                            addMatch(result)
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            window.stop();
+                        });
+
+                }
+
             })
             .catch(error => {
                 console.log(error);
@@ -86,7 +102,27 @@ export default function Gallery() {
 
     }
 
+    function displayMatch() {
+
+        return (
+            <div>
+                {matches.map(match => {
+                    if (!match.info) return;
+                    let date = moment(new Date(match.info.gameCreation)).format("L LTS")
+                    return (
+                        <div id="match-card">
+                            <h1> {date} </h1>
+
+                        </div>
+                    )
+                })}
+            </div>
+        )
+
+    }
+
     return (
+
         <div>
 
             <select name="options" id="options" ref={regionRef}>
@@ -100,8 +136,8 @@ export default function Gallery() {
 
             <div>
 
-                <h1> { localStorage.getItem("search_puuid") } </h1>
-                <h1> { localStorage.getItem("search_username") } </h1>
+                <h1> {localStorage.getItem("search_puuid")} </h1>
+                <h1> {localStorage.getItem("search_username")} </h1>
 
             </div>
 
@@ -111,24 +147,22 @@ export default function Gallery() {
             <div>
                 {
                     search ?
-                        GetSearchInfos(search,
+                        getSearchData(search,
                             "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id", key)
                         : ""
                 }
 
                 {
                     search ?
-                        GetLastMatches(localStorage.getItem("search_puuid"), 30, 420, "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid", 20, key)
+                        getLastMatches(localStorage.getItem("search_puuid"), 7, 430,
+                            "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid", 20, key)
                         : ""
                 }
-                <h1>
-                    {
-                        matchIds ? JSON.stringify(matchIds) : "Loading matches..."
-                    }
-                </h1>
             </div>
 
-
+            <div id="match-root">
+                {matches.length > 0 ? displayMatch() : "No search"}
+            </div>
 
         </div>
     );

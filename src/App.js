@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Gallery from "./pages/playersearch";
+import UserSearching from "./pages/playersearch";
+import Home from "./pages/home";
 
 function App() {
   return <Router>
     <Routes>
-      <Route path="/" element={<Gallery />} />
+      <Route path="/usersearch" element={<UserSearching />} />
+      <Route path="/" element={<Home />} />
     </Routes>
   </Router>
 }
