@@ -55,7 +55,7 @@ export async function getPlayerLastMatches(puuid, period, count, apiKey) {
     let end_point = Math.floor(Date.now() / 1000)
     let start_point = end_point - 60 * 60 * 24 * period
 
-    let query = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&start=0&count=10&api_key=" + apiKey;
+    let query = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&start=0&count=" + count + "&api_key=" + apiKey;
 
     let matchesData = [];
 

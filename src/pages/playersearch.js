@@ -16,14 +16,17 @@ export default function UserSearching() {
 
     const key = "RGAPI-34c7babd-ac70-42e5-8c71-f324e134f0b1";
 
-    const [matchDisplay, setMatchDisplay] = useState(null);
+    const [content, setContent] = useState(null);
 
     const inputRef = createRef();
     const regionRef = createRef();
 
     function handleSubmit() {
 
-        updateMatchData(inputRef.current.value.split("#"), regionEnd[regionRef.current.value], key);
+        updateMatchData(inputRef.current.value.split("#"), regionEnd[regionRef.current.value], key).then(result => {
+            setContent(result);
+            console.log(content);
+        })
 
     }
 
@@ -56,34 +59,48 @@ export default function UserSearching() {
     }
 
     async function updateMatchData(search, region, apiKey) {
+
         await getSearchData(search, region, apiKey);
 
         let matches = await riot.getPlayerLastMatches(localStorage.getItem("search_puuid"), 7, 5, apiKey)
 
+        console.log(matches)
+        return displayMatches(matches)
+
     }
 
-    async function displayMatch() {
-        /*
-        return (
-                <div id="card-container">
-                    {matches.map(match => {
-                        if (!match.info) return null;
+    function displayMatches(matches) {
+
+        let fesse = (
+            <div id="card-container">
+                {
+                    matches.map(match => {
                         let date = moment(new Date(match.info.gameCreation)).format("L LTS");
 
                         return (
                             <div id="match-card">
                                 <h1> {date} </h1>
-                                <h2> {participantNames.map(name => {
-                                    console.log(name)
-                                    return name + " "
-                                })}
-                                </h2>
+                                {
+                                    match.info.participants.map(participantInfos => {
+                                        return (
+                                            <div>
+                                                <h2> {participantInfos.riotIdGameName} </h2>
+                                                <h5> {participantInfos.challenges.kda} </h5>
+                                                <h5> {Math.ceil(participantInfos.challenges.killParticipation * 100)} </h5>
+                                                <h5> {participantInfos.challenges.unseenRecalls} </h5>
+                                                <h5> {participantInfos.championName} </h5>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         )
-                    })}
-                </div>
-            );*/
-        }
+                    })
+                }
+            </div>
+        );
+        return fesse;
+    }
 
     return (
 
@@ -109,7 +126,7 @@ export default function UserSearching() {
             <button onClick={handleSubmit}> Rechercher le joueur</button>
 
             <div id="match-root">
-
+                {content ? content : "Loading data..."}
             </div>
 
         </div>
