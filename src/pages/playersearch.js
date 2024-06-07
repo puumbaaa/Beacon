@@ -1,6 +1,7 @@
 import {createRef, useState} from 'react';
 import "./test.css"
 import moment from "moment";
+import * as riot from "./riot_handler";
 
 export default function UserSearching() {
 
@@ -13,113 +14,76 @@ export default function UserSearching() {
         oc: "OCE",
     }
 
-    const key = "RGAPI-2f8a5bba-b35b-4e14-a14b-47a0cc848a2c";
+    const key = "RGAPI-34c7babd-ac70-42e5-8c71-f324e134f0b1";
 
-    const [data, setData] = useState(null);
-    const [matches, setMatches] = useState([]);
-
-    const [search, setSearch] = useState(null)
-    const [region, setRegion] = useState(null)
+    const [matchDisplay, setMatchDisplay] = useState(null);
 
     const inputRef = createRef();
     const regionRef = createRef();
 
     function handleSubmit() {
-        setSearch(inputRef.current.value.split("#"))
-        setRegion(regionEnd[regionRef.current.value])
+
+        updateMatchData(inputRef.current.value.split("#"), regionEnd[regionRef.current.value], key);
+
     }
 
-    function addMatch(item) {
-        setMatches(prevItems => [...prevItems, item]);
+    function addArrayItem(item, func) {
+        func(prevItems => [...prevItems, item]);
     }
 
-    function updateSearchData(url, userName, gameTag, apiKey) {
+    async function updateSearchData(userName, gameTag, apiKey) {
 
         if (userName == null || gameTag == null || apiKey == null) {
-            return;
+            return null;
         }
 
-        fetch(url + "/" + userName + '/' + gameTag + '?api_key=' + apiKey)
-            .then(response => response.json())
-            .then(result => {
-                setData(result)
-
-                localStorage.setItem("search_puuid", data["puuid"])
-                localStorage.setItem("search_username", data["gameName"])
-                localStorage.setItem("search_tag", data["tagLine"])
-            })
-            .catch(error => {
-                console.log(error);
-                window.stop();
-            });
+        await riot.getUserByNameTag(userName, gameTag, apiKey).then(result => {
+            localStorage.setItem("search_puuid", result["puuid"])
+            localStorage.setItem("search_username", result["gameName"])
+            localStorage.setItem("search_tag", result["tagLine"])
+        })
 
     }
 
-    function getSearchData(search, url, apikey) {
+    async function getSearchData(search, region, apikey) {
 
         if (search.length > 1) {
-            updateSearchData(url, search[0], search[1], apikey)
+            await updateSearchData(search[0], search[1], apikey)
         } else {
-            updateSearchData(url, search[0], region, apikey)
+            await updateSearchData(search[0], region, apikey)
         }
 
-        setSearch(null)
+    }
+
+    async function updateMatchData(search, region, apiKey) {
+        await getSearchData(search, region, apiKey);
+
+        let matches = await riot.getPlayerLastMatches(localStorage.getItem("search_puuid"), 7, 5, apiKey)
 
     }
 
-    function getLastMatches(puuid, period, match_type, url, count, apikey) {
-
-        let end_point = Math.floor(Date.now() / 1000)
-        let start_point = end_point - 60 * 60 * 24 * period
-
-        let query = url + "/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&start=0&count=" + count + "&api_key=" + apikey
-
-        fetch(query)
-            .then(response => response.json())
-            .then(result => {
-
-                for (let i = 0; i < result.length; i++) {
-
-                    let query = "https://europe.api.riotgames.com/lol/match/v5/matches/" + result[i] + "?api_key=" + apikey
-                    fetch(query)
-                        .then(response => response.json())
-                        .then(result => {
-                            console.log(result)
-                            addMatch(result)
-                        })
-                        .catch(error => {
-                            console.log(error);
-                            window.stop();
-                        });
-
-                }
-
-            })
-            .catch(error => {
-                console.log(error);
-                window.stop();
-            });
-
-    }
-
-    function displayMatch() {
-
+    async function displayMatch() {
+        /*
         return (
-            <div>
-                {matches.map(match => {
-                    if (!match.info) return;
-                    let date = moment(new Date(match.info.gameCreation)).format("L LTS")
-                    return (
-                        <div id="match-card">
-                            <h1> {date} </h1>
+                <div id="card-container">
+                    {matches.map(match => {
+                        if (!match.info) return null;
+                        let date = moment(new Date(match.info.gameCreation)).format("L LTS");
 
-                        </div>
-                    )
-                })}
-            </div>
-        )
-
-    }
+                        return (
+                            <div id="match-card">
+                                <h1> {date} </h1>
+                                <h2> {participantNames.map(name => {
+                                    console.log(name)
+                                    return name + " "
+                                })}
+                                </h2>
+                            </div>
+                        )
+                    })}
+                </div>
+            );*/
+        }
 
     return (
 
@@ -144,24 +108,8 @@ export default function UserSearching() {
             <input type="search" ref={inputRef}/>
             <button onClick={handleSubmit}> Rechercher le joueur</button>
 
-            <div>
-                {
-                    search ?
-                        getSearchData(search,
-                            "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id", key)
-                        : ""
-                }
-
-                {
-                    search ?
-                        getLastMatches(localStorage.getItem("search_puuid"), 7, 430,
-                            "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid", 20, key)
-                        : ""
-                }
-            </div>
-
             <div id="match-root">
-                {matches.length > 0 ? displayMatch() : "No search"}
+
             </div>
 
         </div>
