@@ -14,7 +14,7 @@ export default function UserSearching() {
         oc: "OCE",
     }
 
-    const key = "RGAPI-34c7babd-ac70-42e5-8c71-f324e134f0b1";
+    const key = process.env.REACT_APP_RIOT_KEY
 
     const [content, setContent] = useState(null);
 
@@ -71,7 +71,7 @@ export default function UserSearching() {
 
     function displayMatches(matches) {
 
-        let fesse = (
+        return (
             <div id="card-container">
                 {
                     matches.map(match => {
@@ -89,6 +89,12 @@ export default function UserSearching() {
                                                 <h5> {Math.ceil(participantInfos.challenges.killParticipation * 100)} </h5>
                                                 <h5> {participantInfos.challenges.unseenRecalls} </h5>
                                                 <h5> {participantInfos.championName} </h5>
+                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item0 + ".png"}/>
+                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item1 + ".png"}/>
+                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item2 + ".png"}/>
+                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item3 + ".png"}/>
+                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item4 + ".png"}/>
+                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item5 + ".png"}/>
                                             </div>
                                         )
                                     })
@@ -99,7 +105,6 @@ export default function UserSearching() {
                 }
             </div>
         );
-        return fesse;
     }
 
     return (
