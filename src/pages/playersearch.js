@@ -17,11 +17,24 @@ export default function UserSearching() {
     const key = process.env.REACT_APP_RIOT_KEY
 
     const [content, setContent] = useState(null);
+    const [firstLoad, setFirstLoad] = useState(true);
 
     const inputRef = createRef();
     const regionRef = createRef();
 
     function handleSubmit() {
+
+        console.log("called")
+
+        if (firstLoad) {
+            setFirstLoad(false)
+            console.log("blbl")
+            updateMatchData(localStorage.getItem("search_username"), localStorage.getItem("search_tag"), key).then(result => {
+                setContent(result);
+                console.log(content);
+            })
+            return;
+        }
 
         updateMatchData(inputRef.current.value.split("#"), regionEnd[regionRef.current.value], key).then(result => {
             setContent(result);
@@ -50,7 +63,11 @@ export default function UserSearching() {
 
     async function getSearchData(search, region, apikey) {
 
-        if (search.length > 1) {
+        console.log(search)
+
+        if (typeof search == "string") {
+            await updateSearchData(search, region, apikey)
+        } else if (search.length > 1) {
             await updateSearchData(search[0], search[1], apikey)
         } else {
             await updateSearchData(search[0], region, apikey)
@@ -124,6 +141,7 @@ export default function UserSearching() {
 
                 <h1> {localStorage.getItem("search_puuid")} </h1>
                 <h1> {localStorage.getItem("search_username")} </h1>
+                <h1> {firstLoad ? "No" : "Loaded"} </h1>
 
             </div>
 
@@ -132,6 +150,7 @@ export default function UserSearching() {
 
             <div id="match-root">
                 {content ? content : "Loading data..."}
+                {firstLoad && localStorage.getItem("search_puuid") ? handleSubmit() : "Blblbl"}
             </div>
 
         </div>
