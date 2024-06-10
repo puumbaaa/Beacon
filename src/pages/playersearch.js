@@ -1,6 +1,7 @@
 import { createRef, useState } from 'react';
-import '../pages_style/test.css';
+import '../pages_style/search.css';
 import moment from 'moment';
+import { Card, Button } from 'react-bootstrap';
 import * as riot from './riot_handler';
 
 export default function UserSearching() {
@@ -91,28 +92,28 @@ export default function UserSearching() {
                         let date = moment(new Date(match.info.gameCreation)).format("L LTS");
 
                         return (
-                            <div id="match-card">
-                                <h1> {date} </h1>
+                            <Card id="match-card" className="text-center"  border="primary" style={{ width: '50rem' }}>
+                                <Card.Header> Match du {date} </Card.Header>
                                 {
                                     match.info.participants.map(participantInfos => {
                                         return (
-                                            <div>
-                                                <h2> {participantInfos.riotIdGameName} </h2>
-                                                <h5> {participantInfos.challenges.kda} </h5>
-                                                <h5> {Math.ceil(participantInfos.challenges.killParticipation * 100)} </h5>
-                                                <h5> {participantInfos.challenges.unseenRecalls} </h5>
-                                                <h5> {participantInfos.championName} </h5>
-                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item0 + ".png"}/>
-                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item1 + ".png"}/>
-                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item2 + ".png"}/>
-                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item3 + ".png"}/>
-                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item4 + ".png"}/>
-                                                <img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item5 + ".png"}/>
-                                            </div>
+                                            <Card.Body>
+                                                <Card.Title> {participantInfos.riotIdGameName} </Card.Title>
+                                                <Card.Text> {participantInfos.challenges.kda} </Card.Text>
+                                                <Card.Text> {Math.ceil(participantInfos.challenges.killParticipation * 100)} </Card.Text>
+                                                <Card.Text> {participantInfos.challenges.unseenRecalls} </Card.Text>
+                                                <Card.Text> {participantInfos.championName} </Card.Text>
+                                                <Card.Img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item0 + ".png/33px100"}/>
+                                                <Card.Img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item1 + ".png/33px100"}/>
+                                                <Card.Img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item2 + ".png/33px100"}/>
+                                                <Card.Img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item3 + ".png/33px100"}/>
+                                                <Card.Img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item4 + ".png/33px100"}/>
+                                                <Card.Img src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item5 + ".png/33px100"}/>
+                                            </Card.Body>
                                         )
                                     })
                                 }
-                            </div>
+                            </Card>
                         )
                     })
                 }
@@ -140,7 +141,7 @@ export default function UserSearching() {
             </div>
 
             <input type="search" ref={inputRef} />
-            <button onClick={handleSubmit}> Rechercher le joueur</button>
+            <Button onClick={handleSubmit}> Rechercher le joueur</Button>
 
             <div id="match-root">
                 {content ? content : "Loading data..."}
