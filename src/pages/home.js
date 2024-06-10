@@ -68,7 +68,9 @@ function Home() {
                             <option>NA</option>
                             <option>KR</option>
                         </select>
-                        <Button variant="outline-success">Search</Button>
+                        <Button variant="outline-success">
+                            <img src="../img/loop.png" alt="loop_button_img" />
+                        </Button>
                     </Form>
                 </Container>
             </div>
