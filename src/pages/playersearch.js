@@ -63,11 +63,11 @@ export default function UserSearching() {
         console.log(search)
 
         if (typeof search == "string") {
-            await updateSearchData(search, region, apikey)
+            await updateSearchData(search, region, apikey);
         } else if (search.length > 1) {
-            await updateSearchData(search[0], search[1], apikey)
+            await updateSearchData(search[0], search[1], apikey);
         } else {
-            await updateSearchData(search[0], region, apiKey);
+            await updateSearchData(search[0], region, apikey);
         }
     }
 
