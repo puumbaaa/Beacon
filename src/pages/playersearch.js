@@ -1,18 +1,17 @@
-import {createRef, useState} from 'react';
-import "./test.css"
-import moment from "moment";
-import * as riot from "./riot_handler";
+import { createRef, useState } from 'react';
+import '../pages_style/test.css';
+import moment from 'moment';
+import * as riot from './riot_handler';
 
 export default function UserSearching() {
-
     const regionEnd = {
-        eu: "EUW",
-        na: "NA1",
-        jp: "JP1",
-        kr: "KR",
-        br: "BR1",
-        oc: "OCE",
-    }
+        eu: 'EUW',
+        na: 'NA1',
+        jp: 'JP1',
+        kr: 'KR',
+        br: 'BR1',
+        oc: 'OCE',
+    };
 
     const key = process.env.REACT_APP_RIOT_KEY
 
@@ -48,17 +47,15 @@ export default function UserSearching() {
     }
 
     async function updateSearchData(userName, gameTag, apiKey) {
-
         if (userName == null || gameTag == null || apiKey == null) {
             return null;
         }
 
         await riot.getUserByNameTag(userName, gameTag, apiKey).then(result => {
-            localStorage.setItem("search_puuid", result["puuid"])
-            localStorage.setItem("search_username", result["gameName"])
-            localStorage.setItem("search_tag", result["tagLine"])
-        })
-
+            localStorage.setItem('search_puuid', result.puuid);
+            localStorage.setItem('search_username', result.gameName);
+            localStorage.setItem('search_tag', result.tagLine);
+        });
     }
 
     async function getSearchData(search, region, apikey) {
@@ -70,16 +67,15 @@ export default function UserSearching() {
         } else if (search.length > 1) {
             await updateSearchData(search[0], search[1], apikey)
         } else {
-            await updateSearchData(search[0], region, apikey)
+            await updateSearchData(search[0], region, apiKey);
         }
-
     }
 
     async function updateMatchData(search, region, apiKey) {
 
         await getSearchData(search, region, apiKey);
 
-        let matches = await riot.getPlayerLastMatches(localStorage.getItem("search_puuid"), 7, 5, apiKey)
+        let matches = await riot.getPlayerLastMatches(localStorage.getItem('search_puuid'), 7, 5, apiKey);
 
         console.log(matches)
         return displayMatches(matches)
@@ -125,14 +121,12 @@ export default function UserSearching() {
     }
 
     return (
-
         <div>
-
             <select name="options" id="options" ref={regionRef}>
                 <option value="na">North America</option>
                 <option value="eu">Europe West</option>
                 <option value="jp">Japan</option>
-                <option value="kr">Korean</option>
+                <option value="kr">Korea</option>
                 <option value="br">Brazil</option>
                 <option value="oc">Oceania</option>
             </select>
@@ -145,14 +139,13 @@ export default function UserSearching() {
 
             </div>
 
-            <input type="search" ref={inputRef}/>
+            <input type="search" ref={inputRef} />
             <button onClick={handleSubmit}> Rechercher le joueur</button>
 
             <div id="match-root">
                 {content ? content : "Loading data..."}
                 {firstLoad && localStorage.getItem("search_puuid") ? handleSubmit() : "Blblbl"}
             </div>
-
         </div>
     );
 }
