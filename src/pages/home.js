@@ -9,7 +9,7 @@ function Home() {
             <Helmet>
                 <title>Beacon</title>
                 <meta name="description" content="This is a website to improve your level on League of Legends" />
-                <meta http-equiv="pragma" content="no-cache" />
+                <meta content="no-cache" />
                 <meta charSet="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="shortcut icon" href="../img/logo_beacon.png" />
@@ -67,6 +67,17 @@ function Home() {
                             <option>EUW</option>
                             <option>NA</option>
                             <option>KR</option>
+                            <option>EUN</option>
+                            <option>JP</option>
+                            <option>LA</option>
+                            <option>OC</option>
+                            <option>TR</option>
+                            <option>RU</option>
+                            <option>PH</option>
+                            <option>SG</option>
+                            <option>TH</option>
+                            <option>TW</option>
+                            <option>VN</option>
                         </select>
                         <Button variant="outline-success">
                             <img src="../img/loop.png" alt="loop_button_img" />

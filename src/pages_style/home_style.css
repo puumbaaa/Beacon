@@ -23,7 +23,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    opacity: 0.8;
+    opacity: 0.5;
     z-index: -1;
 }
 
@@ -85,7 +85,6 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    width: 600px;
 }
 
 .search-bar input {
