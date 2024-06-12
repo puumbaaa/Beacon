@@ -82,13 +82,14 @@ export default function UserSearching() {
     function displayMatches(matches) {
 
         return (
-            <div id="card-container">
+            <Row id="card-container">
                 {
                     matches.map(match => {
                         let date = moment(new Date(match.info.gameCreation)).format("L LTS");
                         let other = []
 
                         return (
+                            <Col>
                             <Card id="match-card" className="text-center"  border="primary" style={{ width: '50rem' }}>
                                 <Card.Header> Match du {date} </Card.Header>
                                 <CardGroup>
@@ -138,39 +139,19 @@ export default function UserSearching() {
                                     </Card>
                                 </CardGroup>
                             </Card>
+                            </Col>
                         )
                     })
                 }
-            </div>
+            </Row>
         );
     }
 
     return (
-        <div>
-            <select name="options" id="options" ref={regionRef}>
-                <option value="na">North America</option>
-                <option value="eu">Europe West</option>
-                <option value="jp">Japan</option>
-                <option value="kr">Korea</option>
-                <option value="br">Brazil</option>
-                <option value="oc">Oceania</option>
-            </select>
-
-            <div>
-
-                <h5> {localStorage.getItem("search_puuid")} </h5>
-                <h5> {localStorage.getItem("search_username")} </h5>
-                <h5> {firstLoad ? "No" : "Loaded"} </h5>
-
-            </div>
-
-            <input type="search" ref={inputRef} />
-            <Button onClick={handleSubmit}> Rechercher le joueur</Button>
-
-            <Container id="match-root" className="col-md-5 mx-auto" >
-                {content ? content : "Loading data..."}
-                {firstLoad && localStorage.getItem("search_puuid") ? handleSubmit() : ""}
-            </Container>
-        </div>
+        <Container id="match-root" className="col-md-5 mx-auto justify-content-center text-center">
+            <h1 style={{color: "red"}}> Les 10 dernier match de {localStorage.getItem("search_username")} </h1>
+            {content ? content : "Loading data..."}
+            {firstLoad && localStorage.getItem("search_puuid") ? handleSubmit() : ""}
+        </Container>
     );
 }
