@@ -1,10 +1,30 @@
-import React, { useState } from 'react';
+import React, {createRef, useState} from 'react';
 import { Container, Navbar, Nav, Form, FormControl, Button, Dropdown } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 import '../pages_style/home_style.css';
 import { Helmet } from 'react-helmet';
 
 function Home() {
     const [region, setRegion] = useState('EUW');
+
+    const navigate = useNavigate();
+
+    const inputRef = createRef();
+
+    function handleClick() {
+        let searchData = inputRef.current.value.split("#")
+
+        if (typeof searchData == "string") {
+            localStorage.setItem("search_username", searchData)
+            localStorage.setItem("search_tag", region)
+        } else {
+            localStorage.setItem("search_username", searchData[0])
+            localStorage.setItem("search_tag", searchData[1])
+        }
+
+        navigate("/usersearch")
+
+    }
 
     return (
         <>
@@ -74,6 +94,7 @@ function Home() {
                             placeholder="Search for yourself"
                             className="search-input"
                             aria-label="Search"
+                            ref={inputRef}
                         />
                         <Dropdown className="region-dropdown">
                             <Dropdown.Toggle variant="success" id="dropdown-basic" className="region-badge">
@@ -88,7 +109,7 @@ function Home() {
                                 ))}
                             </Dropdown.Menu>
                         </Dropdown>
-                        <Button variant="outline-success" className="search-button">
+                        <Button onClick={handleClick} variant="outline-success" className="search-button">
                             <img src="/img/loop.png" alt="loop_button_img" draggable="false" />
                         </Button>
                     </Form>
