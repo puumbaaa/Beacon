@@ -1,8 +1,10 @@
-import { createRef, useState } from 'react';
-import '../pages_style/search.css';
+import React, { createRef, useState } from 'react';
+import '../pages_style/home_style.css';
 import moment from 'moment';
-import { Card, Button, CardGroup, Container, Row, Col } from 'react-bootstrap';
+import {Card, Button, CardGroup, Container, Row, Col, Navbar, Nav, Form, FormControl, Dropdown} from 'react-bootstrap';
 import * as riot from '../handlers/riot_handler';
+import {Helmet} from "react-helmet";
+import {SearchBar} from "../components/searchbar";
 
 export default function UserSearching() {
     const regionEnd = {
@@ -19,12 +21,7 @@ export default function UserSearching() {
     const [content, setContent] = useState(null);
     const [firstLoad, setFirstLoad] = useState(true);
 
-    const inputRef = createRef();
-    const regionRef = createRef();
-
-    function handleSubmit() {
-
-        console.log("called")
+    function updatePageData() {
 
         if (firstLoad) {
             setFirstLoad(false)
@@ -33,13 +30,7 @@ export default function UserSearching() {
                 setContent(result);
                 console.log(content);
             })
-            return;
         }
-
-        updateMatchData(inputRef.current.value.split("#"), regionEnd[regionRef.current.value], key).then(result => {
-            setContent(result);
-            console.log(content);
-        })
 
     }
 
@@ -147,11 +138,25 @@ export default function UserSearching() {
         );
     }
 
-    return (
-        <Container id="match-root" className="col-md-5 mx-auto justify-content-center text-center">
-            <h1 style={{color: "red"}}> Les 10 dernier match de {localStorage.getItem("search_username")} </h1>
-            {content ? content : "Loading data..."}
-            {firstLoad && localStorage.getItem("search_puuid") ? handleSubmit() : ""}
-        </Container>
+    return  (
+        <>
+            <Helmet>
+                <title>Beacon</title>
+                <meta name="description" content="This is a website to improve your level on League of Legends" />
+                <meta http-equiv="pragma" content="no-cache" />
+                <meta charSet="UTF-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="shortcut icon" href="/img/logo_beacon.png" />
+            </Helmet>
+
+            <SearchBar />
+
+            <Container id="match-root" className="col-md-5 mx-auto justify-content-center text-center">
+                <h1 style={{color: "red"}}> Les 10 dernier match de {localStorage.getItem("search_username")} </h1>
+                {content ? content : "Loading data..."}
+                {firstLoad && localStorage.getItem("search_puuid") ? updatePageData() : ""}
+            </Container>
+
+        </>
     );
 }
