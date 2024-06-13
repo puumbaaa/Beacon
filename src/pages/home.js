@@ -63,7 +63,7 @@ function Home() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="./guides.js">GUIDES</Nav.Link>
+                            <Nav.Link href="/guide">GUIDES</Nav.Link>
                             <Nav.Link href="/usersearch">Player Search</Nav.Link>
                             <Nav.Link href="./profil_in_game.js">PROFIL IN-GAME</Nav.Link>
                             <Nav.Link href="./pro_tips.js">PRO TIPS</Nav.Link>

@@ -1,4 +1,7 @@
 import React, { useState} from 'react';
+import {Container,Row,Col} from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import '../pages_style/guide.css'
 
 export async function getListChamp(version, language) {
     const response = await fetch("https://ddragon.leagueoflegends.com/cdn/" + version + "/data/" + language + "/champion.json")
@@ -29,20 +32,24 @@ export default function ListChampGuid() {
             console.error("champs.data is not an object or is undefined");
             return null; 
         }
-    
-        const elements = Object.values(champs.data).map((champ, index) => (
-            <div key={index}>
-                <h2>{champ.name}</h2>
-                <img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${champ.id}_0.jpg`} alt={`${champ.name} loading screen`}/>
-                <p>{champ.title}</p>
-                <p>{champ.blurb}</p>
-            </div>
-        ));
-    
+        
         return (
-            <div>
-                <div>{elements}</div>
-            </div>
+            <Container >
+                <Row>
+                    {Object.values(champs.data).map((champ, index) => (
+                        <Col key={index} md={4}>
+                            <div className='hover'>
+                            <h2>{champ.name}</h2>
+                            <figure>
+                            
+                            <Link to={`${champ.id}`}><img src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`} alt={`${champ.name} loading screen`}/></Link>   
+                            </figure>
+                            <p>{champ.title}</p>
+                            </div>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
         );
     }
     
