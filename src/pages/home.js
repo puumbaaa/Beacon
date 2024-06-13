@@ -1,11 +1,12 @@
-import React, {createRef, useState} from 'react';
+// /mnt/data/home.js
+import React, { useState } from 'react';
 import { Container, Navbar, Nav, Form, FormControl, Button, Dropdown } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
 import '../pages_style/home_style.css';
 import { Helmet } from 'react-helmet';
-import {SearchBar} from "../components/searchbar";
 
 function Home() {
+    const [region, setRegion] = useState('EUW');
+
     return (
         <>
             <Helmet>
@@ -65,10 +66,40 @@ function Home() {
                 </Container>
             </Navbar>
 
+            <div className="download-container">
+                <span className="button_lg">
+                    <span className="button_sl"></span>
+                    <span className="button_text">Download Now</span>
+                </span>
+            </div>
+
             <div className="content-container">
                 <Container className="content">
                     <img className="title-image" src="/img/Beacon_Title.png" alt="BEACON" draggable="false" />
-                    <SearchBar />
+                    <Form className="search-bar">
+                        <FormControl
+                            type="search"
+                            placeholder="Search for yourself"
+                            className="search-input"
+                            aria-label="Search"
+                        />
+                        <Dropdown className="region-dropdown">
+                            <Dropdown.Toggle variant="success" id="dropdown-basic" className="region-badge">
+                                {region}
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                {['EUW', 'NA', 'KR', 'EUN', 'JP', 'LA', 'OC', 'TR', 'RU', 'PH', 'SG', 'TH', 'TW', 'VN'].map(r => (
+                                    <Dropdown.Item key={r} onClick={() => setRegion(r)}>
+                                        {r}
+                                    </Dropdown.Item>
+                                ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <Button variant="outline-success" className="search-button">
+                            <img src="/img/loop.png" alt="loop_button_img" draggable="false" />
+                        </Button>
+                    </Form>
                 </Container>
             </div>
 
