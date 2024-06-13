@@ -1,5 +1,5 @@
 import {Button, Dropdown, Form, FormControl} from "react-bootstrap";
-import React, {createRef, useState} from "react";
+import React, {createRef, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
 export function SearchBar() {
@@ -9,6 +9,23 @@ export function SearchBar() {
     const navigate = useNavigate();
 
     const inputRef = createRef();
+
+    // Used to handle press enter for search player
+    useEffect(() => {
+        const listener = event => {
+            if (event.code === "Enter" || event.code === "NumpadEnter") {
+
+                event.preventDefault();
+                if (inputRef.current.value === "") return;
+                handleClick()
+
+            }
+        };
+        document.addEventListener("keydown", listener);
+        return () => {
+            document.removeEventListener("keydown", listener);
+        };
+    }, []);
 
     function handleClick() {
 

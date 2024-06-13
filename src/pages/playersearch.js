@@ -1,5 +1,6 @@
 import React, { createRef, useState } from 'react';
 import '../pages_style/home_style.css';
+import '../pages_style/search.css';
 import moment from 'moment';
 import {Card, Button, CardGroup, Container, Row, Col, Navbar, Nav, Form, FormControl, Dropdown} from 'react-bootstrap';
 import * as riot from '../handlers/riot_handler';
@@ -22,6 +23,8 @@ export default function UserSearching() {
     const [firstLoad, setFirstLoad] = useState(true);
 
     function updatePageData() {
+
+        console.log("TAG " + localStorage.getItem("search_tag"))
 
         if (firstLoad) {
             setFirstLoad(false)
