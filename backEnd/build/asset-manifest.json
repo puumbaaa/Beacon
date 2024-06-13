@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8f25feb8.css",
+    "main.js": "/static/js/main.cc3691d1.js",
+    "static/media/kha_zix_bg.jpg": "/static/media/kha_zix_bg.137df003a5ba77eaf6f8.jpg",
+    "index.html": "/index.html",
+    "main.8f25feb8.css.map": "/static/css/main.8f25feb8.css.map",
+    "main.cc3691d1.js.map": "/static/js/main.cc3691d1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f25feb8.css",
+    "static/js/main.cc3691d1.js"
+  ]
+}
