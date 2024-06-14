@@ -4,6 +4,7 @@ body{
 figure {
 	width: 308px;
 	height: 560px;
+	height: 308px;
 	margin: 0;
 	padding: 0;
 	background: #fff;
@@ -26,6 +27,7 @@ figure {
 	-webkit-transform: skewX(-25deg);
 	transform: skewX(-25deg);
 }
+} 
 .hover figure:hover::before {
 	-webkit-animation: shine .75s;
 	animation: shine .75s;
@@ -35,10 +37,12 @@ figure {
 	transform: scale(1);
 	-webkit-transition: .3s ease-out;
 	transition: .3s ease-out;
+	transition: transform 0.3s;
 }
 .hover figure:hover img {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
+	transform: scale(1.2);
 }
 @-webkit-keyframes shine {
 	100% {
