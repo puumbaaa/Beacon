@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Row, Col } from 'react-bootstrap';
 import { Container } from "react-bootstrap";
@@ -67,7 +66,7 @@ export default function ChampGuid() {
     );
     
 }
-=======
+
 export default function ChampGuid(){
     let pathname = window.location.pathname.split('/guide/');
     return(
@@ -76,4 +75,3 @@ export default function ChampGuid(){
         </div>
     )
 }
->>>>>>> parent of 6d1044a4 (champ guid début liaison ddragon)
