@@ -1,6 +1,3 @@
-export default function ChampGuid(){
-    let pathname = window.location.pathname.split('/guide/');
-    return(
 import React, { useEffect, useState } from "react";
 import { Row, Col } from 'react-bootstrap';
 import { Container } from "react-bootstrap";
@@ -41,7 +38,6 @@ export default function ChampGuid() {
 
     return (
         <div>
-            <h1>{pathname}</h1>
             {infoChamp.data && Object.values(infoChamp.data).map((champ, index) => (
                 <div key={index}>
                     <img 
@@ -67,7 +63,6 @@ export default function ChampGuid() {
                 </div>
             ))}
         </div>
-    )
-}    );
+    );
     
 }
