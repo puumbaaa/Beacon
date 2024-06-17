@@ -5,7 +5,7 @@ import UserSearching from './pages/playersearch.jsx';
 import {SQLHandler} from "./handlers/sql_handler.jsx";
 import ListChampGuid from './pages/guides.jsx';
 import ChampGuid from './pages/champion.jsx';
-import {Login} from "./pages/login.jsx";
+import Login from "./pages/login.jsx";
 
 function App() {
   return (

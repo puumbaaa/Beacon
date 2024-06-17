@@ -8,8 +8,8 @@ app.use(cors());
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: "localhost",
-    user: "superuser",
-    password: "ZmEUIgrj_7bA6WxI",
+    user: "root",
+    password: "root",
     database: "beacon"
 });
 
@@ -39,11 +39,7 @@ function createApp(url, executor, ...args) {
 
 createApp("/users", executeQuery, "SELECT * FROM users");
 
-createApp("/iusers", executeQuery, "INSERT INTO users VALUES (null, 11)")
-
-createApp("/clear", executeQuery, "DROP TABLE users")
-
-createApp("/create", executeQuery, "CREATE TABLE users(ID INT AUTO_INCREMENT, KDA VARCHAR)")
+createApp("/insert", executeQuery, "INSERT INTO users VALUES (null, 'MomoCrash', 10, '4f5sd4f9649sg499')")
 
 
 app.listen(8081, () => {
