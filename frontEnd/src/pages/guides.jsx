@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import '../pages_style/guide.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export async function getListChamp(version, language) {
     const link = `https://ddragon.leagueoflegends.com/cdn/${version}/data/${language}/champion.json`;
@@ -37,14 +38,15 @@ export default function ListChampGuid() {
             <Container>
                 <Row>
                     {champs.data && Object.values(champs.data).map((champ, index) => (
-                        <Col key={index} md={4}>
+                        <Col key={index} md={3}>
                             <div className='hover'>
                                 <h2>{champ.name}</h2>
                                 <figure>
                                     <Link to={`${champ.id}`}>
                                         <img 
-                                            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${champ.id}_0.jpg`} 
+                                            src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champ.id}_0.jpg`} 
                                             alt={`${champ.name} loading screen`} 
+                                            className="img-fluid"
                                         />
                                     </Link>
                                 </figure>
