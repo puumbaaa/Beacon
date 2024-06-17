@@ -1,0 +1,21 @@
+#wallpaper {
+    background: url('../../public/img/kha_zix_bg.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.cascading-right {
+    margin-right: -50px;
+}
+
+@media (max-width: 900px) {
+    .cascading-right {
+        margin-right: 0;
+    }
+}
