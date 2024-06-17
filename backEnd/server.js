@@ -13,27 +13,38 @@ const pool = mysql.createPool({
     database: "beacon"
 });
 
-app.get("/users", (req, res) => {
-    const sql = "SELECT * FROM users";
-
-    // Get a connection from the pool
+function executeQuery(request, response, query) {
     pool.getConnection((err, connection) => {
         if (err) console.error(err);
 
-        // Execute the query
-        connection.query(sql, (err, data) => {
-            // Release the connection back to the pool
+        connection.query(query[0], (err, data) => {
             connection.release();
 
             if (err) {
                 console.error('Error executing query:', err);
-                return res.status(500).json({ error: "Query execution error", details: err.message });
+                return response.status(500).json({ error: "Query execution error", details: err.message });
             }
 
-            return res.json(data);
+            return response.json(data);
         });
     });
-});
+}
+
+function createApp(url, executor, ...args) {
+    app.get(url, (req, res) => {
+        executor(req, res, args)
+    });
+}
+
+
+createApp("/users", executeQuery, "SELECT * FROM users");
+
+createApp("/iusers", executeQuery, "INSERT INTO users VALUES (null, 11)")
+
+createApp("/clear", executeQuery, "DROP TABLE users")
+
+createApp("/create", executeQuery, "CREATE TABLE users(ID INT AUTO_INCREMENT, KDA VARCHAR)")
+
 
 app.listen(8081, () => {
     console.log("Listening on port 8081");
