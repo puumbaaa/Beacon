@@ -41,7 +41,7 @@ export default function Login() {
 
                             <div className="text-center">
 
-                                <p>Ou connectez-vous avec :</p>
+                                <p> Ou connectez-vous avec : </p>
 
                                 <Button tag='a' color='none' className='mx-3' style={{color: '#1266f1'}}>
                                     <div icon='twitter' size="sm"/>

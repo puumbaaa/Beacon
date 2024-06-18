@@ -17,7 +17,7 @@ export default function UserSearching() {
         oc: 'OCE',
     };
 
-    const key = "RGAPI-fba41218-be69-43f6-9848-3f9ac0f259b2"
+    const key = "RGAPI-4425d0f6-d9d9-4476-aff8-c960705365ab"
 
     const [content, setContent] = useState(null);
     const [firstLoad, setFirstLoad] = useState(true);
@@ -66,7 +66,7 @@ export default function UserSearching() {
 
         await getSearchData(search, region, apiKey);
 
-        let matches = await riot.getPlayerLastMatches(localStorage.getItem('search_puuid'), 7, 5, apiKey);
+        let matches = await riot.getPlayerLastMatches(localStorage.getItem('search_puuid'), 7, 15, apiKey);
 
         console.log(matches)
         return displayMatches(matches)
@@ -84,55 +84,58 @@ export default function UserSearching() {
 
                         return (
                             <Col>
-                            <Card id="match-card" className="text-center"  border="primary" style={{ width: '50rem' }}>
-                                <Card.Header> Match du {date} </Card.Header>
-                                <CardGroup>
-                                    {
-                                        match.info.participants.map(participantInfos => {
-
-                                            if (participantInfos.puuid == localStorage.getItem('search_puuid')) {
-
-                                                return (
-                                                    <Card>
-                                                        <Card.Body>
-                                                            <Card.Title> {participantInfos.riotIdGameName} </Card.Title>
-                                                            <Card.Text> {"KDA: " + participantInfos.challenges.kda} </Card.Text>
-                                                            <Card.Text> {"Kill Part." + Math.ceil(participantInfos.challenges.killParticipation * 100)} </Card.Text>
-                                                            <Card.Text> {participantInfos.challenges.unseenRecalls} </Card.Text>
-                                                            <Card.Text> {participantInfos.championName} </Card.Text>
-                                                            <Card.Img className="item-display"
-                                                                      src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item0 + ".png"}/>
-                                                            <Card.Img className="item-display"
-                                                                      src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item1 + ".png"}/>
-                                                            <Card.Img className="item-display"
-                                                                      src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item2 + ".png"}/>
-                                                            <Card.Img className="item-display"
-                                                                      src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item3 + ".png"}/>
-                                                            <Card.Img className="item-display"
-                                                                      src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item4 + ".png"}/>
-                                                            <Card.Img className="item-display"
-                                                                      src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item5 + ".png"}/>
-                                                        </Card.Body>
-                                                    </Card>
-                                                )
-                                            } else {
-                                                other.push(participantInfos)
-                                            }
-                                        })
-                                    }
-                                    <Card>
+                                <Card id="match-card" className="text-center"  border="primary" style={{ width: '50rem' }}>
+                                    <Card.Header> Match du {date} </Card.Header>
+                                    <CardGroup>
                                         {
-                                            other.map((participant => {
-                                                return (
-                                                    <div>
-                                                        { participant.riotIdGameName }
-                                                    </div>
-                                                )
-                                            }))
+                                            match.info.participants.map(participantInfos => {
+
+                                                if (participantInfos.puuid == localStorage.getItem('search_puuid')) {
+
+                                                    return (
+                                                        <Card>
+                                                            <Card.Body>
+                                                                <Card.Title> {participantInfos.riotIdGameName + "#" + participantInfos.riotIdTagline} </Card.Title>
+                                                                <Card.Text> {"KDA: " + participantInfos.challenges.kda} </Card.Text>
+                                                                <Card.Text> {"Kill Part." + Math.ceil(participantInfos.challenges.killParticipation * 100)} </Card.Text>
+                                                                <Card.Text> {participantInfos.challenges.unseenRecalls} </Card.Text>
+                                                                <Card.Text> {participantInfos.championName} </Card.Text>
+                                                                <Card.Text> {participantInfos.totalDamageDealtToChampions} </Card.Text>
+                                                                <div>
+                                                                    <Card.Img className="item-display rounded-4 shadow-4" style={{width: '50px', height: '50px'}}
+                                                                              src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item0 + ".png"}/>
+                                                                    <Card.Img className="item-display rounded-4 shadow-4" style={{width: '50px', height: '50px'}}
+                                                                              src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item1 + ".png"}/>
+                                                                    <Card.Img className="item-display rounded-4 shadow-4" style={{width: '50px', height: '50px'}}
+                                                                              src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item2 + ".png"}/>
+                                                                    <Card.Img className="item-display rounded-4 shadow-4" style={{width: '50px', height: '50px'}}
+                                                                              src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item3 + ".png"}/>
+                                                                    <Card.Img className="item-display rounded-4 shadow-4" style={{width: '50px', height: '50px'}}
+                                                                              src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item4 + ".png"}/>
+                                                                    <Card.Img className="item-display rounded-4 shadow-4" style={{width: '50px', height: '50px'}}
+                                                                              src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item5 + ".png"}/>
+                                                                </div>
+                                                            </Card.Body>
+                                                        </Card>
+                                                    )
+                                                } else {
+                                                    other.push(participantInfos)
+                                                }
+                                            })
                                         }
-                                    </Card>
-                                </CardGroup>
-                            </Card>
+                                        <Card>
+                                            {
+                                                other.map((participant => {
+                                                    return (
+                                                        <div>
+                                                            { participant.riotIdGameName + "#" + participant.riotIdTagline}
+                                                        </div>
+                                                    )
+                                                }))
+                                            }
+                                        </Card>
+                                    </CardGroup>
+                                </Card>
                             </Col>
                         )
                     })
@@ -157,7 +160,7 @@ export default function UserSearching() {
             <Container id="match-root" className="col-md-5 mx-auto justify-content-center text-center">
                 <h1 style={{color: "red"}}> Les 10 dernier match de {localStorage.getItem("search_username")} </h1>
                 {content ? content : "Votre recherche n'a pas aboutit"}
-                {firstLoad && localStorage.getItem("search_puuid") ? updatePageData() : ""}
+                {firstLoad ? updatePageData() : ""}
             </Container>
 
         </>
