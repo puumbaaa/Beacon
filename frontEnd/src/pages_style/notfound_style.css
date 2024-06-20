@@ -1,0 +1,32 @@
+.notfound-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('/img/kha_zix_bg.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+
+.notfound-title {
+    font-size: 120px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.notfound-message {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.notfound-button {
+    background-color: #6a6ee5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.notfound-button:hover {
+    background-color: #524bdb;
+}
