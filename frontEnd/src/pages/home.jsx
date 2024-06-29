@@ -1,13 +1,12 @@
-// /mnt/data/home.jsx
-import React, { useState } from 'react';
-import { Container, Navbar, Nav, Form, FormControl, Button, Dropdown } from 'react-bootstrap';
+import React from 'react';
+import { Container } from 'react-bootstrap';
 import '../pages_style/home_style.css';
 import { Helmet } from 'react-helmet';
-import {SearchBar} from "../components/searchbar.jsx";
+import { SearchBar } from '../components/searchbar.jsx';
+import { CustomNavbar } from '../components/navbar.jsx';
+import { Footer } from '../components/footer.jsx';
 
 function Home() {
-    const [region, setRegion] = useState('EUW');
-
     return (
         <>
             <Helmet>
@@ -81,9 +80,7 @@ function Home() {
                 </Container>
             </div>
 
-            <div className="language-switch">
-                <img src="/img/french_flag.png" alt="French" draggable="false" />
-            </div>
+            <Footer />
         </>
     );
 }
