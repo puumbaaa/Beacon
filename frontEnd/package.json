@@ -10,18 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "moment": "^2.30.1",
     "path-browserify": "^1.0.1",
     "querystring": "^0.2.1",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.2.0",
     "react-head": "^3.4.2",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
-    "webpack": "^5.91.0",
-    "moment": "^2.30.1"
+    "webpack": "^5.91.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

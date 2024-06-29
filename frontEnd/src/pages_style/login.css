@@ -10,6 +10,36 @@
     z-index: -1;
 }
 
+body {
+    padding-right: 0px !important;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+}
+
+.beacon-font {
+    font-family: "BriskProRegular", sans-serif;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.btn-primary {
+    background-color: #A596FF !important;
+    border-color: #A596FF !important;
+}
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: #C667F4 !important;
+    border-color: #C667F4 !important;
+}
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: #5D51A1 !important;
+    border-color: #5D51A1 !important;
+}
+
 .cascading-right {
     margin-right: -50px;
 }

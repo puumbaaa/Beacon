@@ -1,10 +1,23 @@
 import {Container, Row, Col, Card, CardBody, Button, Form, Image} from 'react-bootstrap';
 import "../pages_style/login.css"
-import React from "react";
+import React, { createRef } from "react";
+import {RegisterUser, User} from "../handlers/sql_handler.jsx";
 
 export default function Login() {
+
+    const email = createRef()
+    const password = createRef()
+
+    function handleClick() {
+
+        RegisterUser(new User(email.current.value, password.current.value)).then(result => {
+            console.log("Vous avez été enregistrez " + result)
+        })
+
+    }
+
     return (
-        <Container fluid style={{margin: "100px"}}>
+        <Container fluid className="login-container" style={{margin: "100px"}}>
 
             <div id="wallpaper"></div>
 
@@ -17,53 +30,49 @@ export default function Login() {
                           style={{background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)'}}>
                         <CardBody className='p-5 shadow-5 text-center'>
 
-                            <h2 className="fw-bold mb-5">Sign up now</h2>
+                            <h2 className="fw-bold mb-5 beacon-font">Enregistrez vous !</h2>
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Adresse email</Form.Label>
-                                <Form.Control type="email" placeholder="beacon@example.com"/>
+                                <Form.Label className="beacon-font">Adresse email</Form.Label>
+                                <Form.Control ref={email} type="email" placeholder="beacon@example.com"/>
                             </Form.Group>
 
-                            <Form.Label htmlFor="inputPassword5">Password</Form.Label>
+                            <Form.Label htmlFor="inputPassword5" className="beacon-font">Mot de passe</Form.Label>
                             <Form.Control
                                 type="password"
                                 id="inputPassword5"
                                 aria-describedby="passwordHelpBlock"
-                                placeholder="Your password"
+                                placeholder="Votre mot de passe"
+                                ref={password}
                             />
 
                             <div className='d-flex justify-content-center mb-4'>
-                                <input type="checkbox" name='flexCheck' value='' id='flexCheckDefault'
-                                       label='Subscribe to our newsletter'/>
+                                <Form.Check type="checkbox" name='flexCheck' value='' id='flexCheckDefault'
+                                       label='Recevoir les nouvelles du site'/>
                             </div>
 
-                            <Button className='w-100 mb-4' size='md'>sign up</Button>
+                            <Button className='w-100 mb-4' size='md' onClick={handleClick}>S'enregistrez !</Button>
 
                             <div className="text-center">
 
-                                <p> Ou connectez-vous avec : </p>
+                                <p className="beacon-font"> Ou enregistrez vous avec : </p>
 
-                                <Button tag='a' color='none' className='mx-3' style={{color: '#1266f1'}}>
-                                    <div icon='twitter' size="sm"/>
+                                <Button tag='a' color='none' className='mx-3'>
+                                    <Image src="/img/twitter.png" className="icon" icon='twitter' size="sm"/>
                                 </Button>
 
-                                <Button tag='a' color='none' className='mx-3' style={{color: '#1266f1'}}>
-                                    <div icon='google' size="sm"/>
+                                <Button tag='a' color='none' className='mx-3'>
+                                    <a href="#conn"> <Image src="/img/search.png" className="icon" icon='google' size="sm"/> </a>
                                 </Button>
 
-                                <Button tag='a' color='none' className='mx-3' style={{color: '#1266f1'}}>
-                                    <div icon='github' size="sm"/>
+                                <Button tag='a' color='none' className='mx-3'>
+                                    <Image src="/img/github.png"  icon='github' className="icon" size="sm"/>
                                 </Button>
 
                             </div>
 
                         </CardBody>
                     </Card>
-                </Col>
-
-                <Col col='6'>
-                    <Image src="/img/background.jpg" width={400} height={700} className="rounded-4 shadow-4"
-                           alt=""/>
                 </Col>
 
             </Row>

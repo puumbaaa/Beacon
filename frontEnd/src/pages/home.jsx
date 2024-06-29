@@ -52,7 +52,7 @@ function Home() {
                             <Nav.Link href="./e-sport.jsx">E-SPORT</Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#profile">
+                            <Nav.Link href="login">
                                 <img
                                     src="/img/login_img.png"
                                     width="40"

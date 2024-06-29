@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "BriskProRegular";
+    src: local("BriskProRegular"), url(./fonts/BriskProRegular.woff) format('woff');
+}
+
 /*
 .App {
   text-align: center;
