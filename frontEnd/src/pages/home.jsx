@@ -20,51 +20,7 @@ function Home() {
 
             <div id="wallpaper"></div>
 
-            <Navbar className="navbar-custom" expand="lg" fixed="top">
-                <Container>
-                    <Navbar.Brand href="#home" className="brand-left">
-                        <img
-                            src="/img/logo_beacon.png"
-                            width="60"
-                            height="60"
-                            className="d-inline-block align-top"
-                            alt="Beacon logo"
-                            draggable="false"
-                        />
-                        <span>
-                            <img
-                                src="/img/Beacon_Title.png"
-                                width="100"
-                                height="25"
-                                alt="Beacon Title"
-                                draggable="false"
-                            />
-                        </span>
-                    </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="/guide">GUIDES</Nav.Link>
-                            <Nav.Link href="/usersearch">Player Search</Nav.Link>
-                            <Nav.Link href="./profil_in_game.jsx">PROFIL IN-GAME</Nav.Link>
-                            <Nav.Link href="./pro_tips.jsx">PRO TIPS</Nav.Link>
-                            <Nav.Link href="./e-sport.jsx">E-SPORT</Nav.Link>
-                        </Nav>
-                        <Nav>
-                            <Nav.Link href="login">
-                                <img
-                                    src="/img/login_img.png"
-                                    width="40"
-                                    height="40"
-                                    className="d-inline-block align-top"
-                                    alt="Login"
-                                    draggable="false"
-                                />
-                            </Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+            <CustomNavbar></CustomNavbar>
 
             <div className="download-container">
                 <span className="button_lg">

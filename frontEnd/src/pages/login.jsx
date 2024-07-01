@@ -10,9 +10,7 @@ export default function Login() {
 
     function handleClick() {
 
-        RegisterUser(new User(email.current.value, password.current.value)).then(result => {
-            console.log("Vous avez été enregistrez " + result)
-        })
+        RegisterUser(new User(email.current.value), password.current.value);
 
     }
 
