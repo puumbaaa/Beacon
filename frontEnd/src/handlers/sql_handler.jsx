@@ -12,13 +12,13 @@ export class User {
         this.mail = mail;
     }
 
-    register(saltRounds, password) {
-        bcrypt.genSalt(saltRounds, (err, salt) => {
+    async register(saltRounds, password) {
+        await bcrypt.genSalt(saltRounds, (err, salt) => {
             bcrypt.hash(password, salt, (err, hash) => {
                 let options = requestOptions
                 options.body = '{"mail":"' + this.mail + '", "hash":"' + hash + '"}'
                 fetch('http://localhost:8081/user/register', options)
-                    .then(response => console.log(response))
+                    .then(response => response.json())
                     .catch(err => console.log(err))
             });
         });
@@ -26,10 +26,17 @@ export class User {
 
     async login(password) {
         let options = requestOptions
-        options.body = '{"mail":"' + this.mail + '", "password":"' + password + '"}'
-        await fetch('http://localhost:8081/user/register', options)
-            .then(response => console.log(response))
-            .catch(err => console.log(err))
+        options.body = '{"mail":"' + this.mail + '"}'
+        await fetch('http://localhost:8081/user/login', options)
+            .then(response => response.json())
+            .then(data => {
+                bcrypt.compare(password, data[0].hash, function(err, result) {
+                    if (result) {
+                        localStorage.setItem("email", this.email)
+                        localStorage.setItem("username",)
+                    }
+                });
+            }).catch(err => console.log(err))
     }
 
     getMail() {
@@ -59,16 +66,16 @@ export async function IsUserExist(user) {
 
 }
 
-export async function RegisterUser(user, password) {
+export async function TryToLogin(user, password) {
 
     let isUser = await IsUserExist(user);
 
     if (isUser) {
         console.log("Log user")
-        user.login(password)
+        await user.login(password)
     } else {
         console.log("Create user")
-        user.register(10, password)
+        await user.register(10, password)
     }
 
 }

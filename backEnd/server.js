@@ -43,32 +43,6 @@ async function executeQuery(request, response, query) {
     });
 }
 
-async function getQueryResult( query) {
-    let result = null;
-    await pool.getConnection(async (err, connection) => {
-        if (err) console.error(err);
-
-        connection.query(query, (err, data) => {
-            connection.release();
-
-            if (err) {
-                console.error('Error executing query:', err);
-                return null;
-            } else {
-                console.log('Query execution success ', data, data.length);
-                if (data.length === 0) {
-                    return null;
-                } else {
-                    result = data;
-                }
-            }
-
-        });
-    });
-
-    return result
-}
-
 app.post("/user/exist",
     async function (req, res) {
 
@@ -79,8 +53,7 @@ app.post("/user/exist",
 app.post("/user/login",
     async function (req, res) {
 
-        let response = await getQueryResult("SELECT * FROM users WHERE mail='" + req.body.mail + "'");
-        console.log(response);
+        await executeQuery(req, res, "SELECT * FROM users WHERE mail='" + req.body.mail + "'");
 
     });
 

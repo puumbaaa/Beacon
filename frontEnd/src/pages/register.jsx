@@ -3,7 +3,7 @@ import "../pages_style/login.css"
 import React, { createRef } from "react";
 import {TryToLogin, User} from "../handlers/sql_handler.jsx";
 
-export default function Login() {
+export default function Register() {
 
     const email = createRef()
     const password = createRef()
@@ -24,14 +24,19 @@ export default function Login() {
 
                     <img draggable={false} src="/img/Beacon_Title.png"/>
 
-                    <Card className='my-5 cascading-right'
+                    <Card className='my-2 cascading-right'
                           style={{background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)'}}>
-                        <CardBody className='p-5 shadow-5 text-center'>
+                        <CardBody className='p-3 shadow-5 text-center'>
 
-                            <h2 className="fw-bold mb-5 beacon-font"> Connectez-vous !</h2>
+                            <h2 className="fw-bold mb-5 beacon-font">Enregistrez vous !</h2>
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label className="beacon-font">Adresse email</Form.Label>
+                                <Form.Control ref={email} type="email" placeholder="beacon@example.com" required/>
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                                <Form.Label className="beacon-font">Riot Tag</Form.Label>
                                 <Form.Control ref={email} type="email" placeholder="beacon@example.com" required/>
                             </Form.Group>
 
@@ -47,29 +52,25 @@ export default function Login() {
 
                             <div className='d-flex justify-content-center mb-4'>
                                 <Form.Check type="checkbox" name='flexCheck' value='' id='flexCheckDefault'
-                                            label='Recevoir les nouvelles du site'/>
+                                       label='Recevoir les nouvelles du site'/>
                             </div>
 
-                            <Button type={"submit"} className='w-100 mb-4' size='md' onClick={handleClick}>S'enregistrez
-                                !</Button>
+                            <Button type={"submit"} className='w-100 mb-4' size='md' onClick={handleClick}>S'enregistrez !</Button>
 
                             <div className="text-center">
 
-                                <p className="beacon-font"> Ou enregistrez vous avec : </p>
+                                <p className="beacon-font"> Ou enregistrez vous avec </p>
 
                                 <Button tag='a' color='none' className='mx-3'>
-                                    <Image draggable={false} src="/img/twitter.png" className="icon" icon='twitter'
-                                           size="sm"/>
+                                    <Image draggable={false} src="/img/twitter.png" className="icon" icon='twitter' size="sm"/>
                                 </Button>
 
                                 <Button tag='a' color='none' className='mx-3'>
-                                    <a href="#conn"> <Image draggable={false} src="/img/search.png" className="icon"
-                                                            icon='google' size="sm"/> </a>
+                                    <a href="#conn"> <Image draggable={false} src="/img/search.png" className="icon" icon='google' size="sm"/> </a>
                                 </Button>
 
                                 <Button tag='a' color='none' className='mx-3'>
-                                    <Image draggable={false} src="/img/github.png" icon='github' className="icon"
-                                           size="sm"/>
+                                    <Image draggable={false} src="/img/github.png"  icon='github' className="icon" size="sm"/>
                                 </Button>
 
                             </div>
@@ -77,9 +78,8 @@ export default function Login() {
                         </CardBody>
 
                         <CardFooter className="text-center beacon-font">
-                            <a href="/register" style={{textDecoration:"none", color:"#2e1650"}}> <p> Vous n'avez pas de compte ? Cliquez ici ! </p> </a>
+                            <a href="/login" style={{textDecoration:"none", color:"#2e1650"}}> <p> Vous avez un compte ? Cliquez ici ! </p> </a>
                         </CardFooter>
-
                     </Card>
                 </Col>
 
