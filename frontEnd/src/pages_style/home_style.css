@@ -12,7 +12,7 @@ body {
     color: white;
     z-index: 10;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 #wallpaper {
@@ -31,6 +31,9 @@ body {
     background-color: #2e1650;
     border-bottom: 1px solid #41136e;
     padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar-brand img {
@@ -50,6 +53,14 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.nav-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+}
+
 .navbar-nav .nav-link {
     color: white !important;
     font-size: 18px;
@@ -57,6 +68,8 @@ body {
     text-transform: uppercase;
     font-weight: 500;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-nav .nav-link:hover {
@@ -87,9 +100,13 @@ body {
 }
 
 .flag-link {
-    position: absolute;
-    top: 10px;
-    right: 20px;
+    margin-left: 20px;
+}
+
+.no-hover:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+    cursor: default !important;
 }
 
 .content-container {
@@ -112,6 +129,7 @@ body {
     height: auto;
     user-select: none;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .download-container {
@@ -129,6 +147,7 @@ body {
     font-weight: bold;
     font-size: 14px;
     transition: all .15s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
 }
 
 .download-container::before,
@@ -241,7 +260,7 @@ body {
     padding: 10px 20px;
     border-radius: 50px;
     background-color: white;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
     width: 100%;
 }
 
@@ -321,9 +340,10 @@ body {
     padding: 20px 0;
     color: #ffffff;
     text-align: center;
-    position: fixed;
-    width: 100%;
+    position: sticky;
     bottom: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .footer p {
