@@ -8,7 +8,7 @@ export function CustomNavbar() {
         <Navbar className="navbar-custom" expand="lg" fixed="top">
             <Container>
                 <div className="d-flex align-items-center">
-                    <Navbar.Brand href="#home" className="brand-left">
+                    <Navbar.Brand href="/" className="brand-left">
                         <img
                             src="/img/logo_beacon.png"
                             width="60"
@@ -39,7 +39,7 @@ export function CustomNavbar() {
                         <Nav.Link as={Link} to="/e-sport">E-SPORT</Nav.Link>
                     </Nav>
                     <Nav className="align-items-center">
-                        <Nav.Link href="#profile">
+                        <Nav.Link href="/login">
                             <img
                                 src="/img/login_img.png"
                                 width="40"
