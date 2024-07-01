@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=BriskPro&display=swap');
+
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #2e1650 50%, #3e2670 50%);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.menu-container.fade-in {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-container.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.menu-content {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.left-side,
+.right-side {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'BriskPro', sans-serif;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.left-side {
+    background: #2e1650;
+}
+
+.right-side {
+    background: #3e2670;
+}
+
+.left-side:hover {
+    transform: scale(1.05);
+}
+
+.right-side:hover {
+    transform: scale(1.05);
+}
+
+.lightning-divider {
+    position: absolute;
+    width: 50px;
+    height: 100%;
+    background: url('/img/lightning.png') no-repeat center center;
+    background-size: contain;
+    z-index: 2;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-in-out;
+}

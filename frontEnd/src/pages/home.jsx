@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import '../pages_style/home_style.css';
 import { Helmet } from 'react-helmet';
 import { SearchBar } from '../components/searchbar.jsx';
 import { CustomNavbar } from '../components/navbar.jsx';
 import { Footer } from '../components/footer.jsx';
+import Menu from '../components/Menu.jsx';
 
 function Home() {
+    const [isMenuVisible, setMenuVisible] = useState(true);
+
+    const handleCloseMenu = () => {
+        setMenuVisible(false);
+    };
+
     return (
         <>
             <Helmet>
@@ -20,12 +27,14 @@ function Home() {
 
             <div id="wallpaper"></div>
 
-            <CustomNavbar></CustomNavbar>
+            {isMenuVisible && <Menu onClose={handleCloseMenu} />}
+
+            {!isMenuVisible && <CustomNavbar />}
 
             <div className="download-container">
                 <span className="button_lg">
                     <span className="button_sl"></span>
-                    <span className="button_text">Download Now</span>
+                    <span className="button_text">Télécharger l'application</span>
                 </span>
             </div>
 
@@ -36,7 +45,7 @@ function Home() {
                 </Container>
             </div>
 
-            <Footer />
+            {!isMenuVisible && <Footer />}
         </>
     );
 }

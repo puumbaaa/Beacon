@@ -10,7 +10,6 @@ export function SearchBar() {
 
     const inputRef = createRef();
 
-    // Used to handle press enter for search player
     useEffect(() => {
         const listener = event => {
             if (event.code === "Enter" || event.code === "NumpadEnter") {
