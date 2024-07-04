@@ -7,6 +7,7 @@ export default function Register() {
 
     const email = createRef()
     const password = createRef()
+    const tag = createRef()
 
     function handleClick() {
 
@@ -22,11 +23,9 @@ export default function Register() {
             <Row className='g-0 align-items-center'>
                 <Col xs={6} md={4}>
 
-                    <img draggable={false} src="/img/Beacon_Title.png"/>
-
-                    <Card className='my-2 cascading-right'
+                    <Card className='my-5 cascading-right'
                           style={{background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)'}}>
-                        <CardBody className='p-3 shadow-5 text-center'>
+                        <CardBody className='p-5 shadow-5 text-center'>
 
                             <h2 className="fw-bold mb-5 beacon-font">Enregistrez vous !</h2>
 
@@ -37,7 +36,7 @@ export default function Register() {
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
                                 <Form.Label className="beacon-font">Riot Tag</Form.Label>
-                                <Form.Control ref={email} type="email" placeholder="beacon@example.com" required/>
+                                <Form.Control ref={tag} type="email" placeholder="VotreNom#VotreTag" required/>
                             </Form.Group>
 
                             <Form.Label htmlFor="inputPassword5" className="beacon-font">Mot de passe</Form.Label>

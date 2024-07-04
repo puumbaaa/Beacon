@@ -22,8 +22,6 @@ export default function Login() {
             <Row className='g-0 align-items-center'>
                 <Col xs={6} md={4}>
 
-                    <img draggable={false} src="/img/Beacon_Title.png"/>
-
                     <Card className='my-5 cascading-right'
                           style={{background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)'}}>
                         <CardBody className='p-5 shadow-5 text-center'>

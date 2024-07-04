@@ -1,30 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import './menu_style.css';
 
-const Menu = ({ onClose }) => {
-    const [visible, setVisible] = useState(true);
+function Menu() {
+
+    const [hasChoice, setHasChoice] = useState(() => {
+        const choice = localStorage.getItem("choice");
+        return choice !== null;
+    });
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setVisible(true);
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, []);
+        if (hasChoice) {
+            setTimeout(() => {
+                document.querySelector('.menu-container').classList.add('fade-out');
+            }, 100);
+        }
+    }, [hasChoice]);
 
-    const handleChoice = () => {
-        setVisible(false);
-        setTimeout(onClose, 500);
-    };
+    function handleCoaching() {
+        localStorage.setItem("choice", 1)
+        setHasChoice(true);
+    }
+
+    function handleTracking() {
+        localStorage.setItem("choice", 2)
+        setHasChoice(true)
+    }
 
     return (
-        <div className={`menu-container ${visible ? 'fade-in' : 'fade-out'}`}>
+        <div className={`menu-container ${ hasChoice ? "fade-out" : "fade-in"}`}>
             <div className="menu-content">
-                <div className="left-side" onClick={handleChoice}>
-                    <h1>OP.GG</h1>
+                <div className="left-side" onClick={handleTracking}>
+                    <h1>Recherche de joueur</h1>
                 </div>
                 <div className="lightning-divider"></div>
-                <div className="right-side" onClick={handleChoice}>
-                    <h1>COACHING</h1>
+                <div className="right-side" onClick={handleCoaching}>
+                    <h1>Entrainement à League Of Legend</h1>
                 </div>
             </div>
         </div>
