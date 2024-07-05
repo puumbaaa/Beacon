@@ -37,7 +37,7 @@ export function CustomNavbar() {
                         <Nav.Link as={Link} to="/profil_in_game">TON SUIVI</Nav.Link>
                     </Nav>
                     <Nav className="d-flex align-items-center">
-                        <Nav.Link href="/login">
+                        <Nav.Link href={localStorage.getItem("email") ? "/profile" : "/login"}>
                             <img
                                 src="/img/login_img.png"
                                 width="40"
