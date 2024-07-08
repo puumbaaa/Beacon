@@ -34,7 +34,7 @@ function Menu() {
                 </div>
                 <div className="lightning-divider"></div>
                 <div className="right-side" onClick={handleCoaching}>
-                    <h1>Entrainement à League Of Legend</h1>
+                    <h1>Entrainement à League of Legends</h1>
                 </div>
             </div>
         </div>
