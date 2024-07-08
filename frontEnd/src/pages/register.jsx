@@ -1,7 +1,7 @@
 import {Container, Row, Col, Card, CardBody, Button, Form, Image, CardFooter} from 'react-bootstrap';
 import "../pages_style/login.css"
 import React, { createRef } from "react";
-import {TryToLogin, User} from "../handlers/sql_handler.jsx";
+import {TryToLogin, User} from "../handlers/user_handler.jsx";
 
 export default function Register() {
 

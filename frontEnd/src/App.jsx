@@ -9,6 +9,7 @@ import { NotFound } from './components/NotFound';
 import { CustomNavbar } from './components/navbar';
 import { Footer } from './components/footer';
 import Login from "./pages/login.jsx";
+import Profile from "./pages/profile.jsx";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/usersearch" element={<UserSearching />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={ localStorage.getItem("email") === null ? <Register /> : <Profile />} />
+          <Route path="/login" element={ localStorage.getItem("email") === null ? <Login /> : <Profile />} />
+          <Route path="/profile" element={ localStorage.getItem("email") !== null ? <Profile /> : <Register />} />
           <Route path="/guide" element={<ListChampGuid />} />
           <Route path="/guide/:id" element={<ChampGuid />} />
           <Route path="*" element={<NotFound />} /> {/* This catches all undefined routes */}

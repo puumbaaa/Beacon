@@ -1,5 +1,6 @@
-import React, {require, useEffect, useState} from 'react';
 import bcrypt from 'bcryptjs'
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 const requestOptions = {
     method: 'POST',
@@ -32,8 +33,9 @@ export class User {
             .then(data => {
                 bcrypt.compare(password, data[0].hash, function(err, result) {
                     if (result) {
-                        localStorage.setItem("email", this.email)
-                        localStorage.setItem("username",)
+                        localStorage.setItem("email", data[0].mail)
+                        localStorage.setItem("riotTag", data[0].riotName)
+                        localStorage.setItem("riotPuuid", data[0].riotPuuid)
                     }
                 });
             }).catch(err => console.log(err))
@@ -63,6 +65,20 @@ export async function IsUserExist(user) {
     console.log(playerExists)
 
     return playerExists
+
+}
+
+export function Disconnect() {
+
+    localStorage.removeItem('email')
+    localStorage.removeItem('riotPuuid')
+    localStorage.removeItem('riotTag')
+
+    let navigate = useNavigate()
+
+    useEffect(() => {
+        navigate("/");
+    });
 
 }
 

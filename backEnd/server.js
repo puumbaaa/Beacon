@@ -53,7 +53,7 @@ app.post("/user/exist",
 app.post("/user/login",
     async function (req, res) {
 
-        await executeQuery(req, res, "SELECT * FROM users WHERE mail='" + req.body.mail + "'");
+        await executeQuery(req, res, "SELECT mail, hash, riotPuuid, riotName FROM users WHERE mail='" + req.body.mail + "'");
 
     });
 

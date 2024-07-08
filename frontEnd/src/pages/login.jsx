@@ -1,7 +1,7 @@
 import {Container, Row, Col, Card, CardBody, Button, Form, Image, CardFooter} from 'react-bootstrap';
 import "../pages_style/login.css"
 import React, { createRef } from "react";
-import {TryToLogin, User} from "../handlers/sql_handler.jsx";
+import {TryToLogin, User} from "../handlers/user_handler.jsx";
 
 export default function Login() {
 
@@ -48,12 +48,11 @@ export default function Login() {
                                             label='Recevoir les nouvelles du site'/>
                             </div>
 
-                            <Button type={"submit"} className='w-100 mb-4' size='md' onClick={handleClick}>S'enregistrez
-                                !</Button>
+                            <Button type={"submit"} className='w-100 mb-4' size='md' onClick={handleClick}> Se connecter </Button>
 
                             <div className="text-center">
 
-                                <p className="beacon-font"> Ou enregistrez vous avec : </p>
+                                <p className="beacon-font"> Ou connectez-vous avec : </p>
 
                                 <Button tag='a' color='none' className='mx-3'>
                                     <Image draggable={false} src="/img/twitter.png" className="icon" icon='twitter'
