@@ -53,7 +53,7 @@ app.post("/user/exist",
 app.post("/user/login",
     async function (req, res) {
 
-        await executeQuery(req, res, "SELECT mail, hash, riotPuuid, riotName FROM users WHERE mail='" + req.body.mail + "'");
+        await executeQuery(req, res, "SELECT mail, hash, riotPuuid, riotName, riotTag FROM users WHERE mail='" + req.body.mail + "'");
 
     });
 
@@ -62,6 +62,6 @@ app.post("/user/register",
 
         console.log(req.body.hash);
 
-        await executeQuery(req, res, "INSERT INTO `users` (`id`, `riotName`, `riotPuuid`, `riotData`, `mail`, `hash`) VALUES (NULL, 'dd', 'dd', '{}', '" + req.body.mail + "', '" + req.body.hash + "')")
+        await executeQuery(req, res, "INSERT INTO `users` (`id`, `riotName`, `riotTag`, `riotPuuid`, `riotData`, `mail`, `hash`) VALUES (NULL, '" + req.body.riotUsername + "', '" + req.body.riotTag + "', '" + req.body.riotPuuid + "', '{}', '" + req.body.mail + "', '" + req.body.hash + "')")
 
     });

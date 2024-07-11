@@ -12,8 +12,11 @@
 
 body {
     padding-right: 0px !important;
-    overflow-y: hidden !important;
     overflow-x: hidden !important;
+}
+
+.footer {
+    position: relative;
 }
 
 .beacon-font {
@@ -23,6 +26,12 @@ body {
 .icon {
     width: 30px;
     height: 30px;
+}
+
+.form-control {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 .btn-primary {

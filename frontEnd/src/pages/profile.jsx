@@ -14,26 +14,30 @@ export default function Profile() {
 
     }
 
+    function handleDisconnect() {
+
+        Disconnect().then(() => navigate("/"))
+
+    }
+
     return (
-        <Container fluid className="login-container" style={{margin: "100px"}}>
+        <Container fluid className="login-container" style={{marginTop: "50px"}}>
 
             <div id="wallpaper"></div>
 
             <Row className='g-0 align-items-center'>
-                <Col xs={6} md={4}>
+                <Col xs={10} md={6} style={{margin: "0 auto"}}>
 
-                    <Card className='my-5 cascading-right'
+                    <Card className='my-5'
                           style={{background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)'}}>
                         <CardBody className='p-5 shadow-5 text-center'>
 
                             <h2 className="fw-bold mb-5 beacon-font"> Votre profile !</h2>
 
-
-
                         </CardBody>
 
                         <CardFooter className="text-center beacon-font">
-                            <a href="#disconnect" style={{textDecoration:"none", color:"#2e1650"}}> <p onClick={Disconnect}> Deconnexion </p> </a>
+                            <a href="?disconnected=true" style={{textDecoration:"none", color:"#2e1650"}}> <p onClick={handleDisconnect}> Deconnexion </p> </a>
                         </CardFooter>
 
                     </Card>

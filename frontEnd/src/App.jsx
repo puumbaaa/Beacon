@@ -10,8 +10,10 @@ import { CustomNavbar } from './components/navbar';
 import { Footer } from './components/footer';
 import Login from "./pages/login.jsx";
 import Profile from "./pages/profile.jsx";
+import InGameProfile from "./pages/game_stats.jsx";
 
 function App() {
+
   return (
     <Router>
       <div>
@@ -22,6 +24,7 @@ function App() {
           <Route path="/register" element={ localStorage.getItem("email") === null ? <Register /> : <Profile />} />
           <Route path="/login" element={ localStorage.getItem("email") === null ? <Login /> : <Profile />} />
           <Route path="/profile" element={ localStorage.getItem("email") !== null ? <Profile /> : <Register />} />
+          <Route path="/in-game-profile" element={ localStorage.getItem("email") === null ? <InGameProfile /> : <InGameProfile /> } />
           <Route path="/guide" element={<ListChampGuid />} />
           <Route path="/guide/:id" element={<ChampGuid />} />
           <Route path="*" element={<NotFound />} /> {/* This catches all undefined routes */}

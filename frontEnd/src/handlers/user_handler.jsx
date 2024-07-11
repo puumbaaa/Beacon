@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
+import {getUserByNameTag} from "./riot_handler.jsx";
 
 const requestOptions = {
     method: 'POST',
@@ -9,17 +10,26 @@ const requestOptions = {
 
 export class User {
 
-    constructor(mail) {
+    constructor(mail, riotUsername, riotTag) {
         this.mail = mail;
+        this.riotUsername = riotUsername
+        this.riotTag = riotTag
+        this.puuid = null;
     }
 
     async register(saltRounds, password) {
+        if (!this.puuid) return
         await bcrypt.genSalt(saltRounds, (err, salt) => {
             bcrypt.hash(password, salt, (err, hash) => {
                 let options = requestOptions
-                options.body = '{"mail":"' + this.mail + '", "hash":"' + hash + '"}'
+                options.body = '{"mail":"' + this.mail + '", "hash":"' + hash + '", "riotUsername":"' + this.riotUsername + '", "riotTag":"' + this.riotTag + '", "riotPuuid":"' + this.puuid + '"}';
                 fetch('http://localhost:8081/user/register', options)
-                    .then(response => response.json())
+                    .then(response => {
+                        localStorage.setItem("email", this.mail)
+                        localStorage.setItem("riotTag", this.riotTag)
+                        localStorage.setItem("riotName", this.riotUsername)
+                        localStorage.setItem("riotPuuid", this.puuid)
+                    })
                     .catch(err => console.log(err))
             });
         });
@@ -34,11 +44,16 @@ export class User {
                 bcrypt.compare(password, data[0].hash, function(err, result) {
                     if (result) {
                         localStorage.setItem("email", data[0].mail)
-                        localStorage.setItem("riotTag", data[0].riotName)
+                        localStorage.setItem("riotTag", data[0].riotTag)
+                        localStorage.setItem("riotName", data[0].riotName)
                         localStorage.setItem("riotPuuid", data[0].riotPuuid)
                     }
                 });
             }).catch(err => console.log(err))
+    }
+
+    SetPuuid(puuid) {
+        this.puuid = puuid;
     }
 
     getMail() {
@@ -68,17 +83,29 @@ export async function IsUserExist(user) {
 
 }
 
-export function Disconnect() {
+export async function Disconnect() {
 
     localStorage.removeItem('email')
     localStorage.removeItem('riotPuuid')
     localStorage.removeItem('riotTag')
+    localStorage.removeItem('riotName')
 
-    let navigate = useNavigate()
+}
 
-    useEffect(() => {
-        navigate("/");
-    });
+export async function TryToRegister(user, password) {
+
+    let isUser = await IsUserExist(user);
+
+    if (isUser) return false
+
+    let userData = await getUserByNameTag(user.riotUsername, user.riotTag, import.meta.env.VITE_API_KEY_RIOT)
+    if (userData.puuid !== undefined) {
+        user.SetPuuid(userData.puuid)
+        await user.register(10, password)
+        return true
+    } else {
+        return false
+    }
 
 }
 
@@ -86,12 +113,9 @@ export async function TryToLogin(user, password) {
 
     let isUser = await IsUserExist(user);
 
-    if (isUser) {
-        console.log("Log user")
-        await user.login(password)
-    } else {
-        console.log("Create user")
-        await user.register(10, password)
-    }
+    if (!isUser) return false
+
+    await user.login(password)
+    return true;
 
 }

@@ -32,9 +32,9 @@ export function CustomNavbar() {
                     <Nav className="mx-auto nav-center">
                         <Nav.Link as={Link} to="/guide">GUIDES</Nav.Link>
                         <Nav.Link as={Link} to="/usersearch">RECHERCHE DE JOUEUR</Nav.Link>
-                        <Nav.Link as={Link} to="/pro_tips">ASTUCES</Nav.Link>
+                        <Nav.Link as={Link} to="/protips">ASTUCES</Nav.Link>
                         <Nav.Link as={Link} to="/e-sport">E-SPORT</Nav.Link>
-                        <Nav.Link as={Link} to="/profil_in_game">TON SUIVI</Nav.Link>
+                        <Nav.Link as={Link} to="/in-game-profile">TON SUIVI</Nav.Link>
                     </Nav>
                     <Nav className="d-flex align-items-center">
                         <Nav.Link href={localStorage.getItem("email") ? "/profile" : "/login"}>

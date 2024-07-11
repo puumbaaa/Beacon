@@ -17,7 +17,7 @@ export default function UserSearching() {
         oc: 'OCE',
     };
 
-    const key = "RGAPI-4425d0f6-d9d9-4476-aff8-c960705365ab"
+    const key = import.meta.env.VITE_API_KEY_RIOT
 
     const [content, setContent] = useState(null);
     const [firstLoad, setFirstLoad] = useState(true);
@@ -28,7 +28,6 @@ export default function UserSearching() {
 
         if (firstLoad) {
             setFirstLoad(false)
-            console.log("blbl")
             updateMatchData(localStorage.getItem("search_username"), localStorage.getItem("search_tag"), key).then(result => {
                 setContent(result);
                 console.log(content);
