@@ -32,7 +32,9 @@ export default function Profile() {
                           style={{background: 'hsla(0, 0%, 100%, 0.55)', backdropFilter: 'blur(30px)'}}>
                         <CardBody className='p-5 shadow-5 text-center'>
 
-                            <h2 className="fw-bold mb-5 beacon-font"> Votre profile !</h2>
+                            <h2 className="fw-bold mb-5 beacon-font"> Votre profil !</h2>
+                            <h3 className="fw-bold mb-2 beacon-font"> { localStorage.getItem("riotName") }#{ localStorage.getItem("riotTag") } </h3>
+                            <h3 className="fw-bold mb-2 beacon-font"> { localStorage.getItem("email") } </h3>
 
                         </CardBody>
 
