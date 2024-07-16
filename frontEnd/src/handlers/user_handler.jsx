@@ -1,7 +1,5 @@
 import bcrypt from 'bcryptjs'
-import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
-import {getUserByNameTag} from "./riot_handler.jsx";
+import {GetUserByNameTag} from "./riot_handler.jsx";
 
 const requestOptions = {
     method: 'POST',
@@ -10,11 +8,11 @@ const requestOptions = {
 
 export class User {
 
-    constructor(mail, riotUsername, riotTag) {
+    constructor(mail, riotUsername, riotTag, puuid) {
         this.mail = mail;
         this.riotUsername = riotUsername
         this.riotTag = riotTag
-        this.puuid = null;
+        this.puuid = puuid;
     }
 
     async register(saltRounds, password) {
@@ -50,6 +48,21 @@ export class User {
                     }
                 });
             }).catch(err => console.log(err))
+    }
+
+    async GetPlayerData() {
+        let options = requestOptions
+        options.body = '{"mail":"' + this.mail + '"}'
+        return await fetch('http://localhost:8081/user/data', options)
+            .then(response => response.json())
+            .catch(err => console.log(err))
+    }
+
+    async UpdatePlayerData(json_data) {
+        let options = requestOptions
+        options.body = '{"mail":"' + this.mail + '", "data": "' + json_data + '"}'
+        await fetch('http://localhost:8081/user/data', options)
+            .catch(err => console.log(err))
     }
 
     SetPuuid(puuid) {
@@ -92,13 +105,17 @@ export async function Disconnect() {
 
 }
 
+export function GetUserSession() {
+    return new User(localStorage.getItem('email'), localStorage.getItem("riotName"), localStorage.getItem('riotTag'), localStorage.getItem('riotPuuid'))
+}
+
 export async function TryToRegister(user, password) {
 
     let isUser = await IsUserExist(user);
 
     if (isUser) return false
 
-    let userData = await getUserByNameTag(user.riotUsername, user.riotTag, import.meta.env.VITE_API_KEY_RIOT)
+    let userData = await GetUserByNameTag(user.riotUsername, user.riotTag, import.meta.env.VITE_API_KEY_RIOT)
     if (userData.puuid !== undefined) {
         user.SetPuuid(userData.puuid)
         await user.register(10, password)

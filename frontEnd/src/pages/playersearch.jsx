@@ -41,7 +41,7 @@ export default function UserSearching() {
             return null;
         }
 
-        await riot.getUserByNameTag(userName, gameTag, apiKey).then(result => {
+        await riot.GetUserByNameTag(userName, gameTag, apiKey).then(result => {
             localStorage.setItem('search_puuid', result.puuid);
             localStorage.setItem('search_username', result.gameName);
             localStorage.setItem('search_tag', result.tagLine);
@@ -65,7 +65,7 @@ export default function UserSearching() {
 
         await getSearchData(search, region, apiKey);
 
-        let matches = await riot.getPlayerLastMatches(localStorage.getItem('search_puuid'), 7, 15, apiKey);
+        let matches = await riot.GetPlayerLastMatches(localStorage.getItem('search_puuid'), 7, 15, apiKey);
 
         console.log(matches)
         return displayMatches(matches)

@@ -43,10 +43,39 @@ async function executeQuery(request, response, query) {
     });
 }
 
+app.post("/champions/data/*",
+    async function (req, res) {
+
+        console.log(req.originalUrl.split("/")[3])
+        await executeQuery(req, res, "SELECT * FROM champions_global WHERE champName='" + req.originalUrl.split("/")[3] + "'");
+
+    });
+
+app.post("/champions/update/*",
+    async function (req, res) {
+
+        await executeQuery(req, res, "SELECT * FROM champions_global WHERE champName='" + req.originalUrl.split("/")[3] + "'");
+
+    });
+
+app.post("/user/data",
+    async function (req, res) {
+
+        await executeQuery(req, res, "SELECT riotData FROM users WHERE mail='" + req.body.mail + "'");
+
+    });
+
+app.post("/user/data/update",
+    async function (req, res) {
+
+        await executeQuery(req, res, "UPDATE users SET riotData='" + req.body.riotData + " WHERE mail='" + req.body.email + "'");
+
+    });
+
 app.post("/user/exist",
     async function (req, res) {
 
-        await executeQuery(req, res, "SELECT * FROM users WHERE mail='" + req.body.mail + "'");
+        await executeQuery(req, res, "SELECT mail FROM users WHERE mail='" + req.body.mail + "'");
 
     });
 

@@ -1,7 +1,7 @@
 import {Container, Row, Col, Card, CardBody, Button, Form, Image, CardFooter} from 'react-bootstrap';
 import "../pages_style/login.css"
 import React, { createRef } from "react";
-import {TryToLogin, TryToRegister, User} from "../handlers/user_handler.jsx";
+import {TryToLogin, User} from "../handlers/user_handler.jsx";
 import * as formik from "formik";
 import * as yup from "yup";
 import {useNavigate} from "react-router-dom";

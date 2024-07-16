@@ -1,7 +1,7 @@
 /*
  * Get a user infos with user puuid
  */
-export async function getUserByPuuid(puuid, apiKey) {
+export async function GetUserByPuuid(puuid, apiKey) {
     return await fetch( "https://europe.api.riotgames.com/riot/account/v1/accounts/by-puuid/" + puuid + "/?api_key=" + apiKey)
         .then(response => response.json())
         .then(result => {
@@ -16,7 +16,7 @@ export async function getUserByPuuid(puuid, apiKey) {
 /*
  * Get a user infos with username and game tag
  */
-export async function getUserByNameTag(userName, gameTag, apiKey) {
+export async function GetUserByNameTag(userName, gameTag, apiKey) {
     return await fetch( "https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/" + userName + "/" + gameTag + "?api_key=" + apiKey)
         .then(response => response.json())
         .then(result => {
@@ -28,7 +28,7 @@ export async function getUserByNameTag(userName, gameTag, apiKey) {
         });
 }
 
-export async function getMatchData(matchId, apiKey) {
+export async function GetMatchData(matchId, apiKey) {
 
     let query = "https://europe.api.riotgames.com/lol/match/v5/matches/" + matchId + "?api_key=" + apiKey;
     return await fetch(query)
@@ -50,7 +50,7 @@ export async function getMatchData(matchId, apiKey) {
  * @param count number of matches
  * @param apikey the API key
  */
-export async function getPlayerLastMatches(puuid, period, count, apiKey) {
+export async function GetPlayerLastMatches(puuid, period, count, apiKey) {
 
     let end_point = Math.floor(Date.now() / 1000)
     let start_point = end_point - 60 * 60 * 24 * period
@@ -68,7 +68,7 @@ export async function getPlayerLastMatches(puuid, period, count, apiKey) {
             console.log(matchIds)
 
             for (const matchId of matchIds) {
-                matchesData.push(await getMatchData(matchId, apiKey))
+                matchesData.push(await GetMatchData(matchId, apiKey))
             }
 
         }).catch(error => {
