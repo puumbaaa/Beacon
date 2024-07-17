@@ -8,16 +8,17 @@ import {useState} from "react";
 export default function InGameProfile() {
 
     let user = GetUserSession()
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useState(<div></div>);
     const [firstLoad, setFirstLoad] = useState(true);
 
-    async function LoadPage() {
+    function LoadPage() {
         if (firstLoad) {
-            await DisplayPlayedChampions()
+            DisplayPlayedChampions()
             setFirstLoad(false)
+
+            console.log("Loaded")
         }
 
-        console.log("Loaded")
     }
 
     async function DisplayPlayedChampions() {
@@ -27,11 +28,13 @@ export default function InGameProfile() {
             champ = data
         })
 
-        console.log(champ[0].kda)
+        console.log(champ[0].champName)
 
-        setContent((
-            <h1> champ : {champ[0].kda} </h1>
-        ))
+        setContent(
+            (<h1> champ : {champ[0].champName} </h1>)
+        )
+
+        console.log(content)
     }
 
     return (
@@ -40,7 +43,7 @@ export default function InGameProfile() {
                 <h1 className="beacon-font">Votre profil League of Legends</h1>
                 <h2> Profil selectionné : { user.riotUsername + "#" + user.riotTag } </h2>
                 {firstLoad ? LoadPage() : ""}
-                <h2> { content } </h2>
+                <div> { content } </div>
             </div>
         </div>
     );
