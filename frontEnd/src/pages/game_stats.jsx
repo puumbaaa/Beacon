@@ -21,6 +21,12 @@ export default function InGameProfile() {
 
     }
 
+    async function UpdateUserLoLProfile(user) {
+
+        console.log("Update")
+
+    }
+
     async function DisplayPlayedChampions() {
         let champData = new Champion("aatrox")
         let champ = null
@@ -40,6 +46,7 @@ export default function InGameProfile() {
     return (
         <div style={{display: "flex", marginTop: "100px"}}>
             <div style={{margin: "0 auto"}}>
+                <button onClick={UpdateUserLoLProfile}> Update Profile </button>
                 <h1 className="beacon-font">Votre profil League of Legends</h1>
                 <h2> Profil selectionné : { user.riotUsername + "#" + user.riotTag } </h2>
                 {firstLoad ? LoadPage() : ""}
