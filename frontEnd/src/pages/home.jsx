@@ -54,7 +54,6 @@ function Home() {
                     </Container>
                 </div>
 
-                <Footer/>
             </div>
 
         </>

@@ -43,10 +43,25 @@ async function executeQuery(request, response, query) {
     });
 }
 
+app.post("/match/data/create/",
+    async function (req, res){
+
+        console.log(req.body.data)
+
+        await executeQuery(req, res, "INSERT INTO matches (`id`, `data`) VALUES ('" + req.body.id + "', '" + JSON.stringify(req.body.data) + "')");
+
+    })
+
+app.post("/match/data/*",
+    async function (req, res) {
+
+        await executeQuery(req, res, "SELECT * FROM matches WHERE id='" + req.originalUrl.split("/")[3] + "'");
+
+    })
+
 app.post("/champions/data/*",
     async function (req, res) {
 
-        console.log(req.originalUrl.split("/")[3])
         await executeQuery(req, res, "SELECT * FROM champions_global WHERE champName='" + req.originalUrl.split("/")[3] + "'");
 
     });
@@ -62,13 +77,6 @@ app.post("/user/data",
     async function (req, res) {
 
         await executeQuery(req, res, "SELECT riotData FROM users WHERE mail='" + req.body.mail + "'");
-
-    });
-
-app.post("/user/data/update",
-    async function (req, res) {
-
-        await executeQuery(req, res, "UPDATE users SET riotData='" + req.body.riotData + " WHERE mail='" + req.body.email + "'");
 
     });
 
@@ -91,6 +99,6 @@ app.post("/user/register",
 
         console.log(req.body.hash);
 
-        await executeQuery(req, res, "INSERT INTO `users` (`id`, `riotName`, `riotTag`, `riotPuuid`, `riotData`, `mail`, `hash`) VALUES (NULL, '" + req.body.riotUsername + "', '" + req.body.riotTag + "', '" + req.body.riotPuuid + "', '{}', '" + req.body.mail + "', '" + req.body.hash + "')")
+        await executeQuery(req, res, "INSERT INTO `users` (`riotName`, `riotTag`, `riotPuuid`, `riotData`, `mail`, `hash`) VALUES ('" + req.body.riotUsername + "', '" + req.body.riotTag + "', '" + req.body.riotPuuid + "', '{}', '" + req.body.mail + "', '" + req.body.hash + "')")
 
     });

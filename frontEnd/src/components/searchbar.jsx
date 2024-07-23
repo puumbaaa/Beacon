@@ -47,7 +47,7 @@ export function SearchBar() {
         <Form className="search-bar">
             <FormControl
                 type="search"
-                placeholder="Search for yourself"
+                placeholder="Entrez le nom d'un joueur League of Legends !"
                 className="search-input"
                 aria-label="Search"
                 ref={inputRef}
