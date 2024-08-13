@@ -23,4 +23,32 @@ export class Champion {
 
     }
 
+    CompileData() {
+
+        let compiledData = {}
+        let gameNumber = this.games.length
+
+        for (const game of this.games) {
+            console.log(game)
+            Object.keys(game).map(key => {
+                if (compiledData[key] === undefined) {
+                    compiledData[key] = game[key]
+                } else if (typeof game[key] === "number") {
+                    compiledData[key] = compiledData[key] + game[key]
+                }
+            })
+        }
+
+        Object.keys(compiledData).map(key => {
+
+            if (typeof compiledData[key] === "number") {
+                compiledData[key] = compiledData[key] / gameNumber
+            }
+
+        })
+
+        return compiledData
+
+    }
+
 }
