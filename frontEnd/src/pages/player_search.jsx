@@ -105,7 +105,7 @@ export default function UserSearching() {
         window.location.reload();
     }
 
-    async function queuename(queueID){
+    function queuename(queueID){
         /*https://static.developer.riotgames.com/docs/lol/queues.json*/
         switch(queueID){
             case 400:
@@ -174,7 +174,7 @@ export default function UserSearching() {
                                                         // eslint-disable-next-line react/jsx-key
                                                         <div className={"CardPlayer win" + [win]}>
                                                             <div className={"Player-info"}>
-                                                                {/*<p> {queuename(match.data.queueId)}</p>*/}
+                                                                <p>{queuename(match.data.queueId)}</p>
                                                                 <p> {participantInfos.riotIdGameName}</p>
                                                                 <div>
                                                                     <div className={"champion"}>
