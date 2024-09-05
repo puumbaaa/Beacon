@@ -107,45 +107,43 @@ export default function UserSearching() {
 
     async function queuename(queueID){
         /*https://static.developer.riotgames.com/docs/lol/queues.json*/
-        let name = ""
-
         switch(queueID){
             case 400:
-                name = "Draft"
-                break;
+                return "Draft"
+                
             case 420:
-                name = "Ranked Solo/Duo"
-                break;
+                return "Ranked Solo/Duo"
+                
             case 440:
-                name = "Ranked Flex"
-                break;
+                return "Ranked Flex"
+                
             case 450:
-                name = "ARAM"
-                break;
+                return "ARAM"
+                
             case 490:
-                name = "Quickplay"
-                break;
+                return "Quickplay"
+                
             case 700:
-                name = "Clash (Summoner's Rift)"
-                break;
+                return "Clash (Summoner's Rift)"
+                
             case 720:
-                name = "Clash (ARAM)"
-                break;
+                return "Clash (ARAM)"
+                
             case 870:
-                name = "Co-op vs. AI (Intro)"
-                break;
+                return "Co-op vs. AI (Intro)"
+                
             case 880:
-                name = "Co-op vs. AI (Beginner)"
-                break;
+                return "Co-op vs. AI (Beginner)"
+                
             case 890:
-                name = "Co-op vs. AI (Intermediate)"
-                break;
+                return "Co-op vs. AI (Intermediate)"
+                
             case 900:
-                name = "ARURF"
-                break;
-            case 910:
+                return "ARURF"
+                
+            default:
+                return "ERROR"
         }
-        return name
     }
 
     function displayMatches(matches) {
@@ -176,7 +174,7 @@ export default function UserSearching() {
                                                         // eslint-disable-next-line react/jsx-key
                                                         <div className={"CardPlayer win" + [win]}>
                                                             <div className={"Player-info"}>
-                                                                <p> {queuename(match.data.queueId)}</p>
+                                                                {/*<p> {queuename(match.data.queueId)}</p>*/}
                                                                 <p> {participantInfos.riotIdGameName}</p>
                                                                 <div>
                                                                     <div className={"champion"}>
