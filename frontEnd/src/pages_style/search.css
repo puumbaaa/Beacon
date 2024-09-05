@@ -1,4 +1,155 @@
-.item-display {
-    width: 30px;
-    height: 30px;
+#match-root
+{
+    width: 100%;
+}
+#card-container
+{
+    display: flex;
+    flex-direction: column;
+}
+#card-container>div
+{
+    margin: 0.5rem;
+    background-color: white;
+    border-radius: 1rem;
+}
+#match-card
+{
+    text-align: center;
+    width: 50rem;
+}
+
+.CardHeader
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.CardContent
+{
+    display: flex;
+}
+.CardContent>div
+{
+    padding: 10px;
+}
+
+.CardPlayer
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom-left-radius: 1rem;
+    width: 80%;
+}
+.Player-info
+{
+    width: 50%;
+}
+.Player-info>div, .Player-info>p
+{
+    margin-bottom: 16px;
+}
+.champion
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#champname
+{
+    margin-left: 1rem;
+}
+.summonerspell
+{
+    display: inline-flex;
+    flex-direction: row;
+
+}
+.summonerspell>span
+{
+    display: inline-flex;
+    flex-direction: column;
+}
+.summoner
+{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-size: 100%;
+}
+
+.item-list
+{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-self: center;
+}
+.item-list>div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.item-display, .itemfalse, .itemtrue, .champtrue, .champfalse{
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 1rem;
+}
+.itemtrue, .sumtrue, .runetrue, .champtrue
+{
+    background-color: hsl(153, 64%, 35%);
+}
+.itemfalse, .sumfalse, .runefalse, .champfalse
+{
+    background-color: hsl(0, 61%, 43%);
+}
+
+
+.CardOther
+{
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 1rem;
+    width: 20%;
+    justify-content: space-around;
+}
+.CardOther div
+{
+    padding: 0.2rem;
+}
+.Team1, .Team2
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 100%;
+}
+.Team1>span>a, .Team2>span>a
+{
+    text-decoration: none;
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.item-display-team{
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    border-radius: 1rem;
+}
+
+.wintrue
+{
+    background-color: hsl(153, 64%, 40%);
+}
+.winfalse
+{
+    background-color: hsl(0, 61%, 48%);
 }

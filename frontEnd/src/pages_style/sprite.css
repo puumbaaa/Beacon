@@ -1,0 +1,346 @@
+/*https://ddragon.leagueoflegends.com/cdn/14.16.1/data/en_US/summoner.json
+https://ddragon.leagueoflegends.com/cdn/14.16.1/img/sprite/spell0.png better with this but more annoying to do
+*/
+.summonerID21
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerBarrier.png)
+}
+.summonerID1
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerBoost.png)
+}
+.summonerID2202
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerCherryFlash.png)
+}
+.summonerID2201
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerCherryHold.png)
+}
+.summonerID14
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerDot.png)
+}
+.summonerID3
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerExhaust.png)
+}
+.summonerID4
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerFlash.png)
+}
+.summonerID6
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerHaste.png)
+}
+.summonerID7
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerHeal.png)
+}
+.summonerID13
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerMana.png)
+}
+.summonerID30
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerPoroRecall.png)
+}
+.summonerID31
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerPoroThrow.png)
+}
+.summonerID11
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerSmite.png)
+}
+.summonerID39
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerSnowURFSnowball_Mark.png)
+}
+.summonerID32
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerSnowball.png)
+}
+.summonerID12
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/SummonerTeleport.png)
+}
+.summonerID54
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/Summoner_UltBookPlaceholder.png)
+}
+.summonerID55
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/14.16.1/img/spell/Summoner_UltBookSmitePlaceholder.png)
+}
+
+/*https://ddragon.leagueoflegends.com/cdn/11.15.1/data/en_US/runesReforged.json
+same as for the summoner spells the tiny image better BUT WHERE*/
+.runesID8100
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Domination.png);
+}
+.runesID8112
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png);
+}
+.runesID8124
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Predator/Predator.png);
+}
+.runesID8128
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png);
+}
+.runesID9923
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png);
+}
+.runesID8126
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/CheapShot/CheapShot.png);
+}
+.runesID8139
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/TasteOfBlood/GreenTerror_TasteOfBlood.png);
+}
+.runesID8143
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/SuddenImpact/SuddenImpact.png);
+}
+.runesID8136
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/ZombieWard/ZombieWard.png);
+}
+.runesID8120
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/GhostPoro/GhostPoro.png);
+}
+.runesID8138
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/EyeballCollection/EyeballCollection.png);
+}
+.runesID8135
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/RavenousHunter/RavenousHunter.png);
+}
+.runesID8134
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/IngeniousHunter/IngeniousHunter.png);
+}
+.runesID8105
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/RelentlessHunter/RelentlessHunter.png);
+}
+.runesID8106
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/UltimateHunter/UltimateHunter.png);
+}
+.runesID8300
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7203_Whimsy.png);
+}
+.runesID8351
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png);
+}
+.runesID8360
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png);
+}
+.runesID8358
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/MasterKey/MasterKey.png);
+}
+.runesID8306
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/HextechFlashtraption/HextechFlashtraption.png);
+}
+.runesID8304
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/MagicalFootwear/MagicalFootwear.png);
+}
+.runesID8313
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/FuturesMarket/FuturesMarket.png);
+}
+.runesID8316
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/MinionDematerializer/MinionDematerializer.png);
+}
+.runesID8345
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/BiscuitDelivery/BiscuitDelivery.png);
+}
+.runesID8347
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/CosmicInsight/CosmicInsight.png);
+}
+.runesID8410
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/ApproachVelocity/ApproachVelocity.png);
+}
+.runesID8352
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Inspiration/TimeWarpTonic/TimeWarpTonic.png);
+}
+.runesID8000
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7201_Precision.png);
+}
+.runesID8005
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png);
+}
+.runesID8008
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png);
+}
+.runesID8021
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png);
+}
+.runesID8010
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Conqueror/Conqueror.png);
+}
+.runesID9101
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Overheal.png);
+}
+.runesID9111
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Triumph.png);
+}
+.runesID8009
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PresenceOfMind/PresenceOfMind.png);
+}
+.runesID9104
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendAlacrity/LegendAlacrity.png);
+}
+.runesID9105
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendTenacity/LegendTenacity.png);
+}
+.runesID9103
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/LegendBloodline/LegendBloodline.png);
+}
+.runesID8014
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/CoupDeGrace/CoupDeGrace.png);
+}
+.runesID8017
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/CutDown/CutDown.png);
+}
+.runesID8299
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/LastStand/LastStand.png);
+}
+.runesID8400
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png);
+}
+.runesID8437
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png);
+}
+.runesID8439
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png);
+}
+.runesID8465
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/Guardian/Guardian.png);
+}
+.runesID8446
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/Demolish/Demolish.png);
+}
+.runesID8463
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png);
+}
+.runesID8401
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/MirrorShell/MirrorShell.png);
+}
+.runesID8429
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/Conditioning/Conditioning.png);
+}
+.runesID8444
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/SecondWind/SecondWind.png);
+}
+.runesID8473
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/BonePlating/BonePlating.png);
+}
+.runesID8451
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/Overgrowth/Overgrowth.png);
+}
+.runesID8453
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Resolve/Revitalize/Revitalize.png);
+}
+.runesID8242
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/Unflinching/Unflinching.png);
+}
+.runesID8200
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7202_Sorcery.png);
+}
+.runesID8214
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/SummonAery/SummonAery.png);
+}
+.runesID8229
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png);
+}
+.runesID8230
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png);
+}
+.runesID8224
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/NullifyingOrb/Pokeshield.png);
+}
+.runesID8226
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/ManaflowBand/ManaflowBand.png);
+}
+.runesID8275
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/NimbusCloak/6361.png);
+}
+.runesID8210
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/Transcendence/Transcendence.png);
+}
+.runesID8234
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/Celerity/CelerityTemp.png);
+}
+.runesID8233
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/AbsoluteFocus/AbsoluteFocus.png);
+}
+.runesID8237
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/Scorch/Scorch.png);
+}
+.runesID8232
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/Waterwalking/Waterwalking.png);
+}
+.runesID8236
+{
+    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Sorcery/GatheringStorm/GatheringStorm.png);
+}

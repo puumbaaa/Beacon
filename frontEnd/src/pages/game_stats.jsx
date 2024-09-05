@@ -116,7 +116,7 @@ export default function InGameProfile() {
 
     async function UpdateUserLoLProfile() {
 
-        let lastMatches = await GetPlayerLastMatches(user.puuid, 30, 20, import.meta.env.VITE_API_KEY_RIOT)
+        let lastMatches = await GetPlayerLastMatches(user.puuid, 30, 20, -1, import.meta.env.VITE_API_KEY_RIOT)
 
 
         for (const matchData of lastMatches) {
