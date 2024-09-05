@@ -1,11 +1,12 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import '../pages_style/home_style.css';
 import '../pages_style/search.css';
 import moment from 'moment';
-import {Card, CardGroup, Container, Row, Col} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import * as riot from '../handlers/riot_handler.jsx';
-import {Helmet} from "react-helmet";
 import {SearchBar} from "../components/searchbar.jsx";
+import '../pages_style/sprite.css'
 
 export default function UserSearching() {
     const regionEnd = {
@@ -22,20 +23,52 @@ export default function UserSearching() {
     const [content, setContent] = useState(null);
     const [firstLoad, setFirstLoad] = useState(true);
 
-    function updatePageData() {
 
-        console.log("TAG " + localStorage.getItem("search_tag"))
+    /*async function getrune(version, language, idMain, idRune) {
+        const link = "https://ddragon.leagueoflegends.com/cdn/"+ version +"/data/"+ language +"/runesReforged.json";
+        const response = await fetch(link);
+        let linkrune = "https://ddragon.leagueoflegends.com/cdn/img/"
+        if (!response.ok) {
+            throw new Error(`Error fetching rune data: ${response.statusText}`);
+        }
+        const rune = await response.json();
+        linkrune += pain(rune, idMain, idRune)
+        return linkrune;
+    }
+
+    function pain(rune, idMain, idRune){
+        let add
+        if(idMain === idRune) {
+            rune.map(id =>{
+            if(id.id === idMain) {
+                add = id.icon
+                }
+            })
+        }
+        rune.map(id => {
+            if (id.id === idMain) {
+                id.slots.map(id2 =>{
+                    id2.runes.map(id3 =>
+                    {
+                        if(id3.id === idRune){
+                            add = id3.icon
+                        }
+                    })
+                })
+            }})
+        return add
+    }*/
+
+    async function updatePageData() {
 
         if (firstLoad) {
             setFirstLoad(false)
             updateMatchData(localStorage.getItem("search_username"), localStorage.getItem("search_tag"), key).then(result => {
                 setContent(result);
-                console.log(content);
             })
         }
 
     }
-
     async function updateSearchData(userName, gameTag, apiKey) {
         if (userName == null || gameTag == null || apiKey == null) {
             return null;
@@ -49,9 +82,6 @@ export default function UserSearching() {
     }
 
     async function getSearchData(search, region, apikey) {
-
-        console.log(search)
-
         if (typeof search == "string") {
             await updateSearchData(search, region, apikey);
         } else if (search.length > 1) {
@@ -65,100 +95,282 @@ export default function UserSearching() {
 
         await getSearchData(search, region, apiKey);
 
-        let matches = await riot.GetPlayerLastMatches(localStorage.getItem('search_puuid'), 30, 15, apiKey);
-
-        console.log(matches)
+        let matches = await riot.GetPlayerLastMatches(localStorage.getItem('search_puuid'), 30, 10, -1, apiKey);
         return displayMatches(matches)
 
     }
 
-    function displayMatches(matches) {
+    async function reload(userName, gameTag, apiKey){
+        await updateSearchData(userName, gameTag, apiKey);
+        window.location.reload();
+    }
 
+    async function queuename(queueID){
+        /*https://static.developer.riotgames.com/docs/lol/queues.json*/
+        let name = ""
+
+        switch(queueID){
+            case 400:
+                name = "Draft"
+                break;
+            case 420:
+                name = "Ranked Solo/Duo"
+                break;
+            case 440:
+                name = "Ranked Flex"
+                break;
+            case 450:
+                name = "ARAM"
+                break;
+            case 490:
+                name = "Quickplay"
+                break;
+            case 700:
+                name = "Clash (Summoner's Rift)"
+                break;
+            case 720:
+                name = "Clash (ARAM)"
+                break;
+            case 870:
+                name = "Co-op vs. AI (Intro)"
+                break;
+            case 880:
+                name = "Co-op vs. AI (Beginner)"
+                break;
+            case 890:
+                name = "Co-op vs. AI (Intermediate)"
+                break;
+            case 900:
+                name = "ARURF"
+                break;
+            case 910:
+        }
+        return name
+    }
+
+    function displayMatches(matches) {
         return (
-            <Row id="card-container">
+            <div id="card-container">
                 {
                     matches.map(match => {
                         try {
                             let date = moment(new Date(match.data.gameCreation)).format("L LTS");
-                            let other = []
+                            let players = []
+                            let team1 = []
+                            let team2 = []
+                            let win
+                            if(match.data.queueId === 1810 || match.data.queueId === 1820 || match.data.queueId === 1830 || match.data.queueId === 1840 || match.data.queueId === 1710 || match.data.queueId === 1700) {
+                                return (<div>Swarm and arena not supported</div>)
+                            }
+                            else{
+                                return(
+                                <div>
+                                    <div className="CardHeader"> Match du {date} </div>
+                                    <div className="CardContent">
+                                        {
+                                            match.data.participants.map(participantInfos=>{
+                                                if (participantInfos.puuid === localStorage.getItem('search_puuid')) {
+                                                    players.push(participantInfos)
+                                                    win = participantInfos.win
+                                                    return (
+                                                        // eslint-disable-next-line react/jsx-key
+                                                        <div className={"CardPlayer win" + [win]}>
+                                                            <div className={"Player-info"}>
+                                                                <p> {queuename(match.data.queueId)}</p>
+                                                                <p> {participantInfos.riotIdGameName}</p>
+                                                                <div>
+                                                                    <div className={"champion"}>
+                                                                        <div className={"champ" + win}>
+                                                                            <img className={"item-display"}
+                                                                                 alt={"icon" + participantInfos.championName}
+                                                                                 src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/" + participantInfos.championName + ".png"}
+                                                                                 onError={({currentTarget}) => {
+                                                                                     currentTarget.onerror = null; // prevents looping
+                                                                                     currentTarget.style.display = "none";
+                                                                                 }}/>
+                                                                        </div>
+                                                                        <span className={"summonerspell"}>
+                                                                            <span className={"sum" + win}>
+                                                                                <span
+                                                                                    className={"summoner summonerID" + participantInfos.summoner1Id}></span>
+                                                                                <span
+                                                                                    className={"summoner summonerID" + participantInfos.summoner2Id}></span>
 
-                            console.log(match)
-
-                            return (
-                                <Col>
-                                    <Card id="match-card" className="text-center" border="primary"
-                                          style={{width: '50rem'}}>
-                                        <Card.Header> Match du {date} </Card.Header>
-                                        <CardGroup>
-                                            {
-                                                match.data.participants.map(participantInfos => {
-
-                                                    if (participantInfos.puuid == localStorage.getItem('search_puuid')) {
-
-                                                        return (
-                                                            <Card>
-                                                                <Card.Body>
-                                                                    <Card.Title> {participantInfos.riotIdGameName + "#" + participantInfos.riotIdTagline} </Card.Title>
-                                                                    <Card.Text> {"KDA: " + participantInfos.challenges.kda} </Card.Text>
-                                                                    <Card.Text> {"Kill Part." + Math.ceil(participantInfos.challenges.killParticipation * 100)} </Card.Text>
-                                                                    <Card.Text> {participantInfos.challenges.unseenRecalls} </Card.Text>
-                                                                    <Card.Text> {participantInfos.championName} </Card.Text>
-                                                                    <Card.Text> {participantInfos.totalDamageDealtToChampions} </Card.Text>
-                                                                    <div>
-                                                                        <Card.Img
-                                                                            className="item-display rounded-4 shadow-4"
-                                                                            style={{width: '50px', height: '50px'}}
-                                                                            src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item0 + ".png"}/>
-                                                                        <Card.Img
-                                                                            className="item-display rounded-4 shadow-4"
-                                                                            style={{width: '50px', height: '50px'}}
-                                                                            src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item1 + ".png"}/>
-                                                                        <Card.Img
-                                                                            className="item-display rounded-4 shadow-4"
-                                                                            style={{width: '50px', height: '50px'}}
-                                                                            src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item2 + ".png"}/>
-                                                                        <Card.Img
-                                                                            className="item-display rounded-4 shadow-4"
-                                                                            style={{width: '50px', height: '50px'}}
-                                                                            src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item3 + ".png"}/>
-                                                                        <Card.Img
-                                                                            className="item-display rounded-4 shadow-4"
-                                                                            style={{width: '50px', height: '50px'}}
-                                                                            src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item4 + ".png"}/>
-                                                                        <Card.Img
-                                                                            className="item-display rounded-4 shadow-4"
-                                                                            style={{width: '50px', height: '50px'}}
-                                                                            src={"https://ddragon.leagueoflegends.com/cdn/14.11.1/img/item/" + participantInfos.item5 + ".png"}/>
+                                                                            </span>
+                                                                            <span className={"rune" + win}>
+                                                                                <span
+                                                                                    className={"summoner runesID" + participantInfos.perks.styles[0].selections[0].perk}></span>
+                                                                                <span
+                                                                                    className={"summoner runesID" + participantInfos.perks.styles[1].style}></span>
+                                                                            </span>
+                                                                            {/*<span>
+                                                                                <img className={"item-display"}
+                                                                                     alt={"iconrune"}
+                                                                                     src={getrune("11.15.1", "fr_FR", 8100, 8112)}
+                                                                                     onError={({currentTarget}) => {
+                                                                                         currentTarget.onerror = null; // prevents looping
+                                                                                         currentTarget.style.display = "none";
+                                                                                     }}/>
+                                                                            </span>*/}
+                                                                        </span>
+                                                                        <span
+                                                                            id={"champname"}>{participantInfos.championName}</span>
                                                                     </div>
-                                                                </Card.Body>
-                                                            </Card>
-                                                        )
+                                                                </div>
+                                                                <p> {"KDA: " + participantInfos.kills + "/" + participantInfos.deaths + "/" + participantInfos.assists}
+                                                                    {" " + Number.parseFloat(participantInfos.challenges.kda).toFixed(2)}</p>
+                                                                <p>{" Kill Participation: " + Math.ceil(participantInfos.challenges.killParticipation * 100) + "%"} </p>
+                                                                <p> {"Dégâts totaux aux champions: " + participantInfos.totalDamageDealtToChampions} </p>
+                                                            </div>
+                                                            <div className={"item-list"}>
+                                                                <div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item0}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item0 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item1}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item1 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item2}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item2 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item6}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item6 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item3}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item3 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item4}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item4 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                    <div className={"item" + win}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item5}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item5 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                    <div className={"item" + win}
+                                                                         style={{opacity: "0%"}}>
+                                                                        <img className={"item-display"}
+                                                                             alt={"item" + participantInfos.item6}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item5 + ".png"}
+                                                                             onError={({currentTarget}) => {
+                                                                                 currentTarget.onerror = null; // prevents looping
+                                                                                 currentTarget.style.display = "none";
+                                                                             }}/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                } else {
+                                                    players.push(participantInfos)
+                                                }
+                                            })
+                                        }
+                                            {
+                                                players.map(participant => {
+                                                    if (participant.teamId === 100) {
+                                                        team1.push(participant)
                                                     } else {
-                                                        other.push(participantInfos)
+                                                        team2.push(participant)
                                                     }
                                                 })
                                             }
-                                            <Card>
-                                                {
-                                                    other.map((participant => {
+                                            <div className={"CardOther win" + [win]}>
+                                                <div className={"Team1"}>
+                                                    {team1.map(participant => {
                                                         return (
-                                                            <div>
-                                                                {participant.riotIdGameName + "#" + participant.riotIdTagline}
-                                                            </div>
+                                                            // eslint-disable-next-line react/jsx-key
+                                                            <span>
+                                                                <img className={"item-display-team"}
+                                                                     alt={"icon" + participant.championName}
+                                                                     src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/" + participant.championName + ".png"}
+                                                                     onError={({currentTarget}) => {
+                                                                         currentTarget.onerror = null; // prevents looping
+                                                                         currentTarget.style.display = "none";
+                                                                     }}/>
+                                                                <a href="#" onClick={() => {
+                                                                    reload(participant.riotIdGameName, participant.riotIdTagline, key);
+                                                                }}> {participant.riotIdGameName}</a>
+                                                            </span>
                                                         )
-                                                    }))
-                                                }
-                                            </Card>
-                                        </CardGroup>
-                                    </Card>
-                                </Col>
-                            )
+                                                    })}
+                                                </div>
+                                                <div className={"Team2"}>
+                                                    {team2.map(participant => {
+                                                        return (
+                                                            // eslint-disable-next-line react/jsx-key
+                                                            <span>
+                                                                <img className={"item-display-team"}
+                                                                     alt={"icon" + participant.championName}
+                                                                     src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/" + participant.championName + ".png"}
+                                                                     onError={({currentTarget}) => {
+                                                                         currentTarget.onerror = null; // prevents looping
+                                                                         currentTarget.style.display = "none";
+                                                                     }}/>
+                                                                <a href="#" onClick={() => {
+                                                                    reload(participant.riotIdGameName, participant.riotIdTagline, key);
+                                                                }}> {participant.riotIdGameName}</a>
+                                                            </span>
+                                                        )
+                                                    })}
+                                                    </div>
+                                            </div>
+                                                    </div>
+                                    </div>
+                            )}
                         } catch (e) {
-                            console.log("API Speed Exedeed : Game may be not displayed yet !")
+                            console.log("API Speed Exceeded : Game may be not displayed yet !")
+                            return (
+                                <div>
+                                    <h2>API Speed Exceeded : Game may be not displayed yet !</h2>
+                                </div>
+                            )
                         }
                     })
                 }
-            </Row>
+            </div>
         );
     }
 
@@ -166,13 +378,11 @@ export default function UserSearching() {
         <>
 
             <SearchBar />
-
-            <Container id="match-root" className="col-md-5 mx-auto justify-content-center text-center">
-                <h1 style={{color: "red"}}> Les 10 derniers matches de {localStorage.getItem("search_username")} </h1>
+            <Container id="match-root" className="mx-auto justify-content-center text-center">
+                <h1 style={{color: "red"}}> Les 10 derniers matches de {localStorage.getItem("search_username")}#{localStorage.getItem("search_tag")} </h1>
                 {content ? content : "Recherche en cours de chargement."}
                 {firstLoad ? updatePageData() : ""}
             </Container>
-
         </>
     );
 }

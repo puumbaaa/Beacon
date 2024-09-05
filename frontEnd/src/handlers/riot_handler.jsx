@@ -53,25 +53,35 @@ export async function GetMatchData(matchId, apiKey) {
  * @param puuid id of player
  * @param period in days
  * @param count number of matches
+ * @param queue queueID https://static.developer.riotgames.com/docs/lol/queues.json
  * @param apikey the API key
  */
-export async function GetPlayerLastMatches(puuid, period, count, apiKey) {
+export async function GetPlayerLastMatches(puuid, period, count, queue, apiKey) {
 
     let end_point = Math.floor(Date.now() / 1000)
     let start_point = end_point - 60 * 60 * 24 * period
-
-    let riotQuery = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&queue=400&start=0&count=" + count + "&api_key=" + apiKey;
+    let riotQuery = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&start=0&count=" + count + "&api_key=" + apiKey;
+    {/*
+    if (queue !== -1)
+    {
+        riotQuery = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&queue="+ queue +"&start=0&count=" + count + "&api_key=" + apiKey;
+    }
+    else
+    {
+        riotQuery = "https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + start_point + "&endTime=" + end_point + "&start=0&count=" + count + "&api_key=" + apiKey;
+    }
+    */}
     let localBaseQuery = "http://localhost:8081/match/data/"
 
     let matchesData = [];
 
-    console.log(puuid)
+    {/*console.log(puuid)*/}
 
     await fetch(riotQuery)
         .then(response => response.json())
         .then(async matchIds => {
 
-            console.log(matchIds)
+            {/*console.log(matchIds)*/}
 
             for (const matchId of matchIds) {
                 let localQuery = localBaseQuery + matchId
@@ -98,7 +108,7 @@ export async function GetPlayerLastMatches(puuid, period, count, apiKey) {
                     matchesData.push(options.body)
                     options.body = JSON.stringify(options.body)
 
-                    console.log(options)
+                    {/*console.log(options)*/}
 
                     await fetch("http://localhost:8081/match/data/create/", options)
                         .then(result => result.json())
