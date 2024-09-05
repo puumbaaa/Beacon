@@ -1,0 +1,101 @@
+body{
+    margin-top: 6%;
+    text-align: justify;
+}
+
+h2,h3,h4{
+    text-align : center;
+}
+.Container{
+    margin-bottom: 5%;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: rgb(252, 194, 3);
+}
+.Container:hover{
+    background-color: #2e1650;
+    transform: scale(1.05);
+    color : white;
+    
+}
+
+.Container::before{
+    position: absolute;
+	top: 0;
+	left: 0%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 10%;
+	height: 100%;
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+.Container:hover::before{
+    
+    -webkit-animation: shine 0.7s;
+	animation: shine 0.7s;
+}
+
+.Container {
+    
+    transition : background-color 0.7s;
+	transition: transform 0.7s;
+}
+@-webkit-keyframes shine {
+	100% {
+		left: 100%;
+	}
+}
+@keyframes shine {
+	100% {
+		left: 100%;
+	}
+}
+.textn1{
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+
+.ListShow {
+    border-radius: 10px;
+    background-color: #2e1650;
+    transform: scale(1.05);
+    color: white;
+    margin-bottom: 5%;
+}
+
+.List{
+    margin-bottom: 5%;
+    transition : background-color 0.7s;
+	transition: transform 0.7s;
+}
+
+ul{
+    list-style: none;
+}
+
+.UlSelect{
+    list-style: none;
+}
+.transition-container {
+    max-height: 0;
+    opacity: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    display : flex;
+    justify-content: center;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+  
+.show {
+    max-height: 500px;
+    opacity: 1;
+}
+  
+.hide {
+    max-height: 0;
+    opacity: 0;
+}

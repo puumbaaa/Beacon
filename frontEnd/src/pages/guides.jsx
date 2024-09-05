@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import '../pages_style/home_style.css';
 import '../pages_style/guide.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
