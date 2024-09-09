@@ -14,7 +14,6 @@ export async function getInfoChamp(version, language, champion) {
         throw new Error(`Error fetching champion data: ${response.statusText}`);
     }
     const infoChamp = await response.json();
-    console.log(infoChamp);
     return infoChamp;
 }
 
@@ -24,7 +23,6 @@ export default function ChampGuid() {
     const language = "fr_FR";
     const currentPathname = window.location.pathname;
     const champion = currentPathname.split("/guide/")[1];
-    console.log(champion);
 
     useEffect(() => {
         const fetchInfo = async () => {
@@ -73,7 +71,7 @@ export default function ChampGuid() {
 
       }
 
-      getChampion("Aatrox", [Descriptor.PRESENTATION, Descriptor.DETAILS])
+      getChampion(champion, [Descriptor.PRESENTATION, Descriptor.DETAILS])
 
     return (
         <div>
