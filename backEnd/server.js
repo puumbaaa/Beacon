@@ -59,20 +59,6 @@ app.post("/match/data/*",
 
     })
 
-app.post("/champions/data/*",
-    async function (req, res) {
-
-        await executeQuery(req, res, "SELECT * FROM champions_global WHERE champName='" + req.originalUrl.split("/")[3] + "'");
-
-    });
-
-app.post("/champions/update/*",
-    async function (req, res) {
-
-        await executeQuery(req, res, "SELECT * FROM champions_global WHERE champName='" + req.originalUrl.split("/")[3] + "'");
-
-    });
-
 app.post("/user/data",
     async function (req, res) {
 
@@ -97,8 +83,16 @@ app.post("/user/login",
 app.post("/user/register",
     async function (req, res) {
 
-        console.log(req.body.hash);
-
         await executeQuery(req, res, "INSERT INTO `users` (`riotName`, `riotTag`, `riotPuuid`, `riotData`, `mail`, `hash`) VALUES ('" + req.body.riotUsername + "', '" + req.body.riotTag + "', '" + req.body.riotPuuid + "', '{}', '" + req.body.mail + "', '" + req.body.hash + "')")
+
+    });
+
+app.post("/champions/description",
+    async function (req, res) {
+
+        console.log(req.body.name);
+        console.log(req.body.columns);
+
+        await executeQuery(req, res, "SELECT " + req.body.columns + " FROM champions WHERE champName='" + req.body.name + "'")
 
     });

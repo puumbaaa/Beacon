@@ -3,6 +3,7 @@ import '../pages_style/home_style.css';
 import '../pages_style/champions.css'
 import { Row, Col } from 'react-bootstrap';
 import { Container } from "react-bootstrap";
+import {Champion, Descriptor} from "../handlers/champion_data.jsx";
 
 // Fetch champion info asynchronously
 export async function getInfoChamp(version, language, champion) {
@@ -62,8 +63,21 @@ export default function ChampGuid() {
           }
         }));
       };
+
+      function getChampion(name, columns) {
+
+          const champ = new Champion(name);
+          champ.FetchChampionInfos(columns)
+              .then(result => result.json())
+              .then(infos => { console.log(infos[0].presentation) })
+
+      }
+
+      getChampion("Aatrox", [Descriptor.PRESENTATION, Descriptor.DETAILS])
+
     return (
         <div>
+
             {infoChamp.data && Object.values(infoChamp.data).map((champ, index) => (
                 <div key={index}>
                     <Container className="Container">

@@ -2,6 +2,23 @@
 const requestOptions = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
+    body: {}
+}
+
+export const Descriptor = {
+    NAME : "champName",
+    PRESENTATION : "presentation",
+    ROLE : "role",
+    POSITION : "position",
+    DETAILS : "details",
+    FORCES : "forces",
+    WEAKNESS : "weakness",
+    EARLY : "early",
+    MID : "mid",
+    LATE : "late",
+    GOOD_MATCH_UPS : "good-match-ups",
+    BAD_MATCH_UPS : "bad-match-ups",
+    TIPS_TRICKS : "tips-tricks"
 }
 
 export class Champion {
@@ -11,9 +28,16 @@ export class Champion {
         this.games = []
     }
 
-    async FetchChampionData() {
-        return await fetch('http://localhost:8081/champions/data/' + this.name, requestOptions)
-            .then(response => response.json())
+    async FetchChampionInfos(columns) {
+        requestOptions.body.name = this.name.toLowerCase()
+        let col = columns[0]
+        for (let i = 1; i < columns.length; i++) {
+            col += "," + columns[i]
+        }
+        requestOptions.body.columns = col
+        requestOptions.body = JSON.stringify(requestOptions.body)
+        console.log(requestOptions)
+        return await fetch('http://localhost:8081/champions/description', requestOptions)
             .catch(err => console.log(err))
     }
 
