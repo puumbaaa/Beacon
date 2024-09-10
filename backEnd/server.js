@@ -9,14 +9,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.listen(8081, () => {
-    console.log("Listening on port 80");
+    console.log("Listening on port 8081");
 });
 
 const pool = mysql.createPool({
     connectionLimit: 10,
     host: "localhost",
-    user: "root",
-    password: "",
+    user: "superuser",
+    password: "ZmEUIgrj_7bA6WxI",
     database: "beacon"
 });
 
