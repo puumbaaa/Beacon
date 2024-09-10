@@ -51,7 +51,6 @@ export default function ListChampGuid() {
                                         />
                                     </Link>
                                 </figure>
-                                <p>{champ.title}</p>
                             </div>
                         </Col>
                     ))}

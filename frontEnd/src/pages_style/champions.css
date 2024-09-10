@@ -3,7 +3,7 @@ body{
     text-align: justify;
 }
 
-h2,h3,h4{
+h1,h2,h3,h4{
     text-align : center;
 }
 .Container{
@@ -19,44 +19,51 @@ h2,h3,h4{
     
 }
 
-.Container::before{
+.Container::before {
     position: absolute;
-	top: 0;
-	left: 0%;
-	z-index: 2;
-	display: block;
-	content: '';
-	width: 10%;
-	height: 100%;
-    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	-webkit-transform: skewX(-25deg);
-	transform: skewX(-25deg);
+    top: 0;
+    left: 0%;
+    z-index: 2;
+    display: block;
+    content: '';
+    width: 0; /* Initially hidden */
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: none; /* No transition unless hovered */
 }
-.Container:hover::before{
-    
-    -webkit-animation: shine 0.7s;
-	animation: shine 0.7s;
+
+.Container:hover::before {
+    width: 10%; /* Appears only on hover */
+    animation: shine 0.7s;
+    animation-fill-mode: forwards;
 }
 
 .Container {
-    
-    transition : background-color 0.7s;
-	transition: transform 0.7s;
+    position: relative;
+    overflow: hidden; /* Keeps the shine within the container */
+    transition: background-color 0.7s, transform 0.7s;
 }
-@-webkit-keyframes shine {
-	100% {
-		left: 100%;
-	}
+
+.Container:hover {
+    transform: scale(1.05); /* Slight zoom-in */
 }
+
 @keyframes shine {
-	100% {
-		left: 100%;
-	}
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 100%;
+    }
 }
+
+
+
 .textn1{
     margin-top: 7%;
     margin-bottom: 7%;
+    text-align: center;
 }
 
 .ListShow {

@@ -16,9 +16,9 @@ export const Descriptor = {
     EARLY : "early",
     MID : "mid",
     LATE : "late",
-    GOOD_MATCH_UPS : "good-match-ups",
-    BAD_MATCH_UPS : "bad-match-ups",
-    TIPS_TRICKS : "tips-tricks"
+    GOODMU : "goodMU",
+    BADMU : "badMU",
+    TIPS : "tips"
 }
 
 export class Champion {
@@ -29,7 +29,7 @@ export class Champion {
     }
 
     async FetchChampionInfos(columns) {
-        requestOptions.body.name = this.name.toLowerCase()
+        requestOptions.body.name = this.name
         let col = columns[0]
         for (let i = 1; i < columns.length; i++) {
             col += "," + columns[i]
