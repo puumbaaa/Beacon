@@ -11,6 +11,7 @@ h1,h2,h3,h4{
     border-style: solid;
     border-radius: 10px;
     border-color: rgb(252, 194, 3);
+    background-color: #6a6ee5;
 }
 .Container:hover{
     background-color: #2e1650;

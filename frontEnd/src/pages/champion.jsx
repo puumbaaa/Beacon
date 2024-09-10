@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import { Container } from "react-bootstrap";
 import {Champion, Descriptor} from "../handlers/champion_data.jsx";
 
+
 // Fetch champion info asynchronously
 export async function getInfoChamp(version, language, champion) {
     const link = `https://ddragon.leagueoflegends.com/cdn/${version}/data/${language}/champion/${champion}.json`;
@@ -39,32 +40,11 @@ export default function ChampGuid() {
     }, [version, language, champion]);
     
 
-    const StrenghtWeakness = ["Sustain Élevé : Grâce à la Posture du massacreur, le passif de la ruée obscure et le fossoyeur des mondes, Aatrox peut se soigner considérablement, surtout lors des combats prolongés.",
-                            "Dégâts en Zone : L'épée des Darkins, inflige des dégâts de zone, le rendant redoutable dans les combats en équipe.",
-                            "Contrôle de Foule : Les Chaînes Infernales et les différentes phases de Frappe des Ténèbres offrent des outils de contrôle.",
-                            "Polyvalence en Combat : Aatrox peut engager, désengager ou poursuivre les ennemis grâce au fossoyeur des mondes qui augmente sa mobilité et ses dégâts.",
-                            "Vulnérabilité au Kiting : Aatrox est faible contre les champions ayant une grande mobilité ou pouvant l'empêcher d'approcher",
-                            "Dépendance aux Compétences : Ses compétences doivent être bien utilisées pour maximiser son potentiel. Si ses skillshots, notamment l'épée des Darkins, sont esquivés, Aatrox devient beaucoup moins menaçant.",
-                            "Faiblesse en Early Game : Avant d'obtenir ses premiers objets et son ultime, Aatrox peut être vulnérable, en particulier contre des champions à burst ou les champions très mobiles.",
-                            "Faible en Cas de Retard : Si Aatrox prend du retard en début de partie, il peut avoir du mal à rester pertinent, car il nécessite des objets pour être efficace."]
-
-    const sectionCount = 8;
-    const sectionIds = Array.from({ length: StrenghtWeakness.length }, (_, i) => `Demo${i + 1}`);
-    const [isVisible, setIsVisible] = useState(
-        sectionIds.reduce((acc, id) => ({ ...acc, [id]: {visible : false, bgColor: '#3e2670'}}), {})
-      );
     
-      const toggleVisibility = (id) => {
-        setIsVisible((prevState) => ({
-          ...prevState,
-          [id]: {
-            visible: !prevState[id].visible,
-            bgColor: !prevState[id].visible ? '#3e2670' : 'green' 
-          }
-        }));
-      };
-      const [infoGuid, setInfoGuid] = useState(null);
-      const [error, setError] = useState(null);
+   
+    
+      const [infoGuid, setInfoGuid] = useState();
+      const [error, setError] = useState();
     
       useEffect(() => {
         async function getChampion(name, columns) {
