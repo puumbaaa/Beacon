@@ -56,7 +56,6 @@ function Home() {
                     <button className="show-menu-button" onClick={handleShowMenu}>Réafficher le Menu</button>
                 </div>
 
-                <Footer/>
             </div>
         </>
     );

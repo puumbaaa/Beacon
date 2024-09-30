@@ -83,7 +83,7 @@ export default function ChampGuid() {
     return (
         <div>
 
-            <Button onClick={back} style={{marginLeft: "50px"}}> Back </Button>
+            <Button onClick={back} style={{marginLeft: "50px", position: "fixed"}}> Back </Button>
 
             { infoGuid !== null && infoGuid.presentation !== null && infoChamp.data ?
                 Object.values(infoChamp.data).map((champ, index) => (
