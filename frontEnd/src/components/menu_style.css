@@ -1,98 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=BriskPro&display=swap');
+@font-face {
+    font-family: 'MADECarvingSoft';
+    src: url('/fonts/MADECarvingSoftPERSONALUSE-SemiBold.otf') format('truetype');
+}
 
-.menu-container {
+.menu-container-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    background: linear-gradient(to right, #2e1650 50%, #3e2670 50%);
+    background-color: rgba(0, 0, 0, 1);
+    background-image: url('img/menu_img/background_menu_img.png');
     z-index: 1001;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
+    padding-top: 11%;
 }
 
-.menu-container.fade-in {
-    opacity: 1;
-    visibility: visible;
-}
-
-.menu-container.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.menu-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-.left-side,
-.right-side {
-    width: 100%;
-    height: 100%;
+.card-carousel-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    font-family: 'BriskPro', sans-serif;
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    gap: 250px;
+}
+
+.card-menu {
+    width: 326.4px;
+    height: 543.15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+    opacity: 1;
 }
 
-.left-side {
-    background: #2e1650;
-    z-index: 0;
+.card-menu:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px 10px #60e7ff;
 }
 
-.right-side {
-    background: #3e2670;
-    z-index: 0;
-}
-
-.left-side:hover {
-    transform: scale(1.05);
-    z-index: 1;
-}
-
-.right-side:hover {
-    transform: scale(1.05);
-    z-index: 1;
-}
-
-.lightning-divider {
-    position: absolute;
-    width: 50px;
+.card-menu img {
+    width: 100%;
     height: 100%;
-    background: url('/img/lightning.png') no-repeat center center;
-    background-size: contain;
-    z-index: 2;
+    object-fit: cover;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.card-titles-menu {
+    display: flex;
+    justify-content: center;
+    gap: 280px;
+    width: 100%;
+    padding: 0 200px;
+    margin-top: 60px;
 }
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+.card-title-menu {
+    font-size: 40px;
+    color: white !important;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    font-family: 'MADECarvingSoft', sans-serif;
+    text-align: center;
+    width: 307.2px;
+    margin: 0;
+    transition: color 0.3s;
 }
 
-.fade-in {
-    animation: fadeIn 1s ease-in-out;
+.card-title-menu.highlighted {
+    color: #60e7ff !important;
+    transition: color 0.3s;
 }
 
-.fade-out {
-    animation: fadeOut 1s ease-in-out;
-}

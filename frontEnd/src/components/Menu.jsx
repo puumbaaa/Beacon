@@ -1,44 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import './menu_style.css';
+import clickSound from '/img/menu_img/sound-effect-lol-for-beacon.mp3';
 
-function Menu() {
-
-    const [hasChoice, setHasChoice] = useState(() => {
-        const choice = localStorage.getItem("choice");
-        return choice !== null;
-    });
+function Menu({ onClose }) {
+    const [isFirstVisit, setIsFirstVisit] = useState(false);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
     useEffect(() => {
-        if (hasChoice) {
-            setTimeout(() => {
-                document.querySelector('.menu-container').classList.add('fade-out');
-            }, 100);
+        const hasVisited = localStorage.getItem('hasVisited');
+
+        if (!hasVisited) {
+            setIsFirstVisit(true);
+            localStorage.setItem('hasVisited', 'true');
+        } else {
+            setIsFirstVisit(true);
         }
-    }, [hasChoice]);
 
-    function handleCoaching() {
-        localStorage.setItem("choice", 1)
-        setHasChoice(true);
+        setHoveredIndex(null);
+    }, []);
+
+    if (!isFirstVisit) {
+        return null;
     }
 
-    function handleTracking() {
-        localStorage.setItem("choice", 2)
-        setHasChoice(true)
-    }
+    const cards = [
+        {
+            title: 'Traqueur de statistiques',
+            image: '/img/menu_img/Malphite_menu_img.png',
+            link: '/'
+        },
+        {
+            title: 'Contenu pédagogique',
+            image: '/img/menu_img/Aatrox_menu_img.png',
+            link: '/guide'
+        },
+        {
+            title: 'E-sport',
+            image: '/img/menu_img/Leblanc_menu_img.png',
+            link: '/e-sport'
+        }
+    ];
+
+    const handleCardClick = (index) => {
+        onClose();
+        window.location.href = cards[index].link;
+    };
+
+    const playSound = () => {
+        const audio = new Audio(clickSound);
+        audio.play();
+    };
 
     return (
-        <div className={`menu-container ${ hasChoice ? "fade-out" : "fade-in"}`}>
-            <div className="menu-content">
-                <div className="left-side" onClick={handleTracking}>
-                    <h1>Recherche de joueur</h1>
-                </div>
-                <div className="lightning-divider"></div>
-                <div className="right-side" onClick={handleCoaching}>
-                    <h1>Entrainement à League of Legends</h1>
-                </div>
+        <div className="menu-container-menu">
+            <div className="card-carousel-menu">
+                {cards.map((card, index) => (
+                    <div
+                        key={index}
+                        className={`card-menu ${index === hoveredIndex ? 'selected' : ''}`}
+                        onClick={() => handleCardClick(index)}
+                        onMouseEnter={() => {
+                            setHoveredIndex(index);
+                            playSound();
+                        }}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                    >
+                        <img src={card.image} alt={card.title} className="card-image" />
+                    </div>
+                ))}
+            </div>
+            <div className="card-titles-menu">
+                {cards.map((card, index) => (
+                    <h2 key={index} className={`card-title-menu ${index === hoveredIndex ? 'highlighted' : ''}`}>
+                        {card.title}
+                    </h2>
+                ))}
             </div>
         </div>
     );
-};
+}
 
 export default Menu;

@@ -33,7 +33,7 @@ function App() {
           <Route path="/e-sport" element={ < Esports /> } />
           <Route path="/guide" element={<ListChampGuid />} />
           <Route path="/guide/:id" element={<ChampGuid />} />
-          <Route path="*" element={<NotFound />} /> {/* This catches all undefined routes */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

@@ -8,17 +8,16 @@ import { Footer } from '../components/footer.jsx';
 import Menu from '../components/Menu.jsx';
 
 function Home() {
+    const [showMenu, setShowMenu] = useState(localStorage.getItem('hasVisited') !== 'true');
 
     function displayFirstLoadMenu() {
-
-        if (!localStorage.getItem("choice")) {
-
-            return (
-                <Menu/>
-            )
-
+        if (showMenu) {
+            return <Menu onClose={() => setShowMenu(false)} />;
         }
+    }
 
+    function handleShowMenu() {
+        setShowMenu(true);
     }
 
     return (
@@ -37,7 +36,6 @@ function Home() {
             {displayFirstLoadMenu()}
 
             <div>
-
                 <CustomNavbar/>
 
                 <div className="download-container">
@@ -54,8 +52,12 @@ function Home() {
                     </Container>
                 </div>
 
-            </div>
+                <div className="show-menu-button-container">
+                    <button className="show-menu-button" onClick={handleShowMenu}>Réafficher le Menu</button>
+                </div>
 
+                <Footer/>
+            </div>
         </>
     );
 }
