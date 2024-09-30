@@ -181,7 +181,7 @@ export default function UserSearching() {
                                                                         <div className={"champ" + win}>
                                                                             <img className={"item-display"}
                                                                                  alt={"icon" + participantInfos.championName}
-                                                                                 src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/" + participantInfos.championName + ".png"}
+                                                                                 src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/champion/" + participantInfos.championName + ".png"}
                                                                                  onError={({currentTarget}) => {
                                                                                      currentTarget.onerror = null; // prevents looping
                                                                                      currentTarget.style.display = "none";
@@ -201,15 +201,6 @@ export default function UserSearching() {
                                                                                 <span
                                                                                     className={"summoner runesID" + participantInfos.perks.styles[1].style}></span>
                                                                             </span>
-                                                                            {/*<span>
-                                                                                <img className={"item-display"}
-                                                                                     alt={"iconrune"}
-                                                                                     src={getrune("11.15.1", "fr_FR", 8100, 8112)}
-                                                                                     onError={({currentTarget}) => {
-                                                                                         currentTarget.onerror = null; // prevents looping
-                                                                                         currentTarget.style.display = "none";
-                                                                                     }}/>
-                                                                            </span>*/}
                                                                         </span>
                                                                         <span
                                                                             id={"champname"}>{participantInfos.championName}</span>
@@ -225,7 +216,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item0}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item0 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item0 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -234,7 +225,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item1}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item1 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item1 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -243,7 +234,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item2}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item2 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item2 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -252,7 +243,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item6}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item6 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item6 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -263,7 +254,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item3}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item3 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item3 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -272,7 +263,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item4}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item4 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item4 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -281,7 +272,7 @@ export default function UserSearching() {
                                                                     <div className={"item" + win}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item5}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item5 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item5 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -291,7 +282,7 @@ export default function UserSearching() {
                                                                          style={{opacity: "0%"}}>
                                                                         <img className={"item-display"}
                                                                              alt={"item" + participantInfos.item6}
-                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/item/" + participantInfos.item5 + ".png"}
+                                                                             src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/item/" + participantInfos.item5 + ".png"}
                                                                              onError={({currentTarget}) => {
                                                                                  currentTarget.onerror = null; // prevents looping
                                                                                  currentTarget.style.display = "none";
@@ -323,7 +314,7 @@ export default function UserSearching() {
                                                             <span>
                                                                 <img className={"item-display-team"}
                                                                      alt={"icon" + participant.championName}
-                                                                     src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/" + participant.championName + ".png"}
+                                                                     src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/champion/" + participant.championName + ".png"}
                                                                      onError={({currentTarget}) => {
                                                                          currentTarget.onerror = null; // prevents looping
                                                                          currentTarget.style.display = "none";
@@ -342,7 +333,7 @@ export default function UserSearching() {
                                                             <span>
                                                                 <img className={"item-display-team"}
                                                                      alt={"icon" + participant.championName}
-                                                                     src={"https://ddragon.leagueoflegends.com/cdn/14.16.1/img/champion/" + participant.championName + ".png"}
+                                                                     src={"https://ddragon.leagueoflegends.com/cdn/14.19.1/img/champion/" + participant.championName + ".png"}
                                                                      onError={({currentTarget}) => {
                                                                          currentTarget.onerror = null; // prevents looping
                                                                          currentTarget.style.display = "none";

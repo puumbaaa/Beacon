@@ -1,6 +1,7 @@
 body{
     margin-top: 6%;
     text-align: justify;
+    background: linear-gradient(0deg, rgba(106, 110, 229, 0.7), rgba(130, 74, 233, 0.7), rgba(153, 48, 221, 0.7), rgba(219, 113, 253, 0.7), rgba(255, 247, 140, 0.7));
 }
 
 h1,h2,h3,h4{
