@@ -26,9 +26,10 @@
     padding: 1rem 2rem;
     font-family: 'BriskPro', sans-serif;
 
-    box-shadow: 0px 0px 40px #FBF785;
+    box-shadow: 0px 0px 40px #2e164f;
 
     margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .search-name {
