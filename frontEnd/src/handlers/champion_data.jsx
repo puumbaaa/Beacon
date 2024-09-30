@@ -29,16 +29,16 @@ export class Champion {
     }
 
     async FetchChampionInfos(columns) {
-        requestOptions.body.name = this.name
-        let col = columns[0]
-        for (let i = 1; i < columns.length; i++) {
-            col += "," + columns[i]
-        }
-        requestOptions.body.columns = col
-        requestOptions.body = JSON.stringify(requestOptions.body)
-        console.log(requestOptions)
+
+        let bodyContent = {
+            name: this.name,
+            columns: columns.join(",")
+        };
+
+        requestOptions.body = JSON.stringify(bodyContent);
+
         return await fetch('http://localhost:8081/champions/description', requestOptions)
-            .catch(err => console.log(err))
+            .catch(err => console.log('Fetch error:', err))
     }
 
     InsertGameData(data) {

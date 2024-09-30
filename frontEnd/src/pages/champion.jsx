@@ -9,7 +9,6 @@ import {Champion, Descriptor} from "../handlers/champion_data.jsx";
 // Fetch champion info asynchronously
 export async function getInfoChamp(version, language, champion) {
     const link = `https://ddragon.leagueoflegends.com/cdn/${version}/data/${language}/champion/${champion}.json`;
-    console.log(link);
     const response = await fetch(link);
     if (!response.ok) {
         throw new Error(`Error fetching champion data: ${response.statusText}`);
@@ -26,6 +25,22 @@ export default function ChampGuid() {
     const currentPathname = window.location.pathname;
     const champion = currentPathname.split("/guide/")[1];
 
+    async function getChampion(name, columns) {
+        try {
+            const champ = await new Champion(name);
+            const result = await champ.FetchChampionInfos(columns);
+
+            if (result.ok) {
+                const infos = await result.json();
+                return infos[0];
+            } else {
+                throw new Error(`Failed to fetch: ${result.status}`);
+            }
+        } catch (err) {
+            throw new Error(`Error fetching champion: ${err.message}`);
+        }
+    }
+
     useEffect(() => {
         const fetchInfo = async () => {
             try {
@@ -38,35 +53,31 @@ export default function ChampGuid() {
 
         fetchInfo();
     }, [version, language, champion]);
-    
 
-    
-   
-    
-      const [infoGuid, setInfoGuid] = useState({});
-      const [error, setError] = useState();
-    
-      useEffect(() => {
-        async function getChampion(name, columns) {
-          try {
-            const champ = new Champion(name);
-            const result = await champ.FetchChampionInfos(columns);
-            const infos = await result.json();
-            setInfoGuid(infos[0]);
-            console.log(infos[0])
-          } catch (err) {
-            setError('Failed to fetch champion data');
-          }
-        }
-    
-        getChampion(champion.toLocaleLowerCase(), [Descriptor.PRESENTATION, Descriptor.DETAILS, Descriptor.ROLE, Descriptor.POSITION, Descriptor.FORCES, Descriptor.WEAKNESS, Descriptor.EARLY, Descriptor.MID, Descriptor.LATE, Descriptor.GOODMU, Descriptor.BADMU, Descriptor.TIPS]);
-      }, [champion]);
-    
+
+    const [infoGuid, setInfoGuid] = useState({});
+    const [error, setError] = useState();
+
+    async function loadChampion() {
+        let result = await getChampion(champion.toLocaleLowerCase(), [Descriptor.PRESENTATION, Descriptor.DETAILS, Descriptor.ROLE, Descriptor.POSITION, Descriptor.FORCES, Descriptor.WEAKNESS, Descriptor.EARLY, Descriptor.MID, Descriptor.LATE, Descriptor.GOODMU, Descriptor.BADMU, Descriptor.TIPS])
+        setInfoGuid(result)
+    }
+
+    useEffect(() => {
+        const fetchInfo = async () => {
+            try {
+                let result = await getChampion(champion.toLocaleLowerCase(), [Descriptor.PRESENTATION, Descriptor.DETAILS, Descriptor.ROLE, Descriptor.POSITION, Descriptor.FORCES, Descriptor.WEAKNESS, Descriptor.EARLY, Descriptor.MID, Descriptor.LATE, Descriptor.GOODMU, Descriptor.BADMU, Descriptor.TIPS])
+                setInfoGuid(result)
+            } catch (error) {
+                console.error("Erreur avec notre API :", error.message);
+            }
+        };
+
+        fetchInfo();
+    }, [champion]);
 
     return (
         <div>
-
-            { infoGuid !== null ? "Loaded" : "Loading"}
 
             { infoGuid !== null && infoGuid.presentation !== null && infoChamp.data ?
                 Object.values(infoChamp.data).map((champ, index) => (
