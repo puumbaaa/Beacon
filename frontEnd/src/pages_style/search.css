@@ -19,6 +19,22 @@
     width: 50rem;
 }
 
+#match-root {
+    border-radius: 1rem;
+
+    background-color: #C667F4;
+    padding: 1rem 2rem;
+    font-family: 'BriskPro', sans-serif;
+
+    box-shadow: 0px 0px 40px #FBF785;
+
+    margin-bottom: 2rem;
+}
+
+.search-name {
+    color: white;
+}
+
 .CardHeader
 {
     padding-top: 10px;
@@ -147,9 +163,9 @@
 
 .wintrue
 {
-    background-color: hsl(153, 64%, 40%);
+    background-color: #82e0aa;
 }
 .winfalse
 {
-    background-color: hsl(0, 61%, 48%);
+    background-color: #ec7063;
 }

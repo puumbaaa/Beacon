@@ -1,4 +1,4 @@
-import "../pages_style/login.css"
+import "../pages_style/game_stats.css"
 import {GetUserSession, User} from "../handlers/user_handler.jsx";
 import {Champion} from "../handlers/champion_data.jsx";
 import {useEffect, useState} from "react";
@@ -139,7 +139,7 @@ export default function InGameProfile() {
     return (
         <div style={{display: "flex", marginTop: "100px"}}>
             <div style={{margin: "0 auto"}}>
-                <Button onClick={UpdateUserProfile}> Actualisé votre profile pour l'affiné </Button>
+                <Button className={"update-button"} onClick={UpdateUserProfile}> Actualisé votre profile pour l'affiné </Button>
                 <h1 className="beacon-font">Votre profil League of Legends</h1>
                 <h2> Profil selectionné : { user.riotUsername + "#" + user.riotTag } </h2>
                 <Container fluid style={{marginTop: "50px"}}>

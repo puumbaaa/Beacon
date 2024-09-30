@@ -366,9 +366,11 @@ export default function UserSearching() {
     return  (
         <>
 
-            <SearchBar />
+            <div style={{margin: "0 auto", height: "100px", width: "900px"}}>
+                <SearchBar />
+            </div>
             <Container id="match-root" className="mx-auto justify-content-center text-center">
-                <h1 style={{color: "red"}}> Les 10 derniers matches de {localStorage.getItem("search_username")}#{localStorage.getItem("search_tag")} </h1>
+                <h1 className={"search-name"} style={{color: "white"}}> Matchs de {localStorage.getItem("search_username")}#{localStorage.getItem("search_tag")} </h1>
                 {content ? content : "Recherche en cours de chargement."}
                 {firstLoad ? updatePageData() : ""}
             </Container>

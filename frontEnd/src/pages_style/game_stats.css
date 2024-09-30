@@ -1,0 +1,24 @@
+.card {
+    background-color: #7A43CC;
+
+    color: white;
+    box-shadow: 0 0 15px #2e164f;
+    margin: 10px;
+
+    text-shadow: 0 0 15px #2e164f;
+}
+
+.update-button {
+
+    position: fixed;
+    display: flex;
+
+    left: 20px;
+    bottom: 20px;
+
+    border-radius: 10px;
+    border: 2px solid #2e164f;
+
+    background-color: #0f1923;
+
+}

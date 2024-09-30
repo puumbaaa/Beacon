@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../pages_style/home_style.css';
 import '../pages_style/champions.css'
-import {Row, Col, Navbar} from 'react-bootstrap';
+import {Row, Col, Navbar, Button} from 'react-bootstrap';
 import { Container } from "react-bootstrap";
 import {Champion, Descriptor} from "../handlers/champion_data.jsx";
 
@@ -41,6 +41,10 @@ export default function ChampGuid() {
         }
     }
 
+    function back() {
+        window.history.back()
+    }
+
     useEffect(() => {
         const fetchInfo = async () => {
             try {
@@ -78,6 +82,8 @@ export default function ChampGuid() {
 
     return (
         <div>
+
+            <Button onClick={back} style={{marginLeft: "50px"}}> Back </Button>
 
             { infoGuid !== null && infoGuid.presentation !== null && infoChamp.data ?
                 Object.values(infoChamp.data).map((champ, index) => (
