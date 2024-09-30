@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../pages_style/home_style.css';
 import '../pages_style/champions.css'
-import { Row, Col } from 'react-bootstrap';
+import {Row, Col, Navbar} from 'react-bootstrap';
 import { Container } from "react-bootstrap";
 import {Champion, Descriptor} from "../handlers/champion_data.jsx";
 
@@ -43,7 +43,7 @@ export default function ChampGuid() {
     
    
     
-      const [infoGuid, setInfoGuid] = useState();
+      const [infoGuid, setInfoGuid] = useState({});
       const [error, setError] = useState();
     
       useEffect(() => {
@@ -53,6 +53,7 @@ export default function ChampGuid() {
             const result = await champ.FetchChampionInfos(columns);
             const infos = await result.json();
             setInfoGuid(infos[0]);
+            console.log(infos[0])
           } catch (err) {
             setError('Failed to fetch champion data');
           }
@@ -65,7 +66,10 @@ export default function ChampGuid() {
     return (
         <div>
 
-            {infoChamp.data && Object.values(infoChamp.data).map((champ, index) => (
+            { infoGuid !== null ? "Loaded" : "Loading"}
+
+            { infoGuid !== null && infoGuid.presentation !== null && infoChamp.data ?
+                Object.values(infoChamp.data).map((champ, index) => (
                 <div key={index}>
                     <Container className="Container">
                         <Row>
@@ -88,7 +92,7 @@ export default function ChampGuid() {
                     </Container>
                     <Container className="Container">
                         <Row>
-                        <h2>Compétences D'Aatrox</h2>
+                        <h2>Compétences de {champ.name}</h2>
                             {champ.spells.map((spell, spellIndex) => (
                                 <Col key={spellIndex} md={3}>
                                     <img
@@ -155,7 +159,7 @@ export default function ChampGuid() {
                         <p>{infoGuid.tips}</p>
                     </Container>
                 </div>
-            ))}
+            )) : "" }
         </div>
     );
     
